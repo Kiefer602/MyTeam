@@ -30,6 +30,11 @@
 /* Including needed modules to compile this module/procedure */
 #include "Cpu.h"
 #include "Events.h"
+#include "Bit1.h"
+#include "BitIoLdd1.h"
+#include "WAIT1.h"
+#include "Bit2.h"
+#include "BitIoLdd2.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -42,13 +47,22 @@ int main(void)
 /*lint -restore Enable MISRA rule (6.3) checking. */
 {
   /* Write your local variable definition here */
-
+		//LED0=USR_LED_R;
+		//LED1=USR_LED_L;
   /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
   PE_low_level_init();
   /*** End of Processor Expert internal initialization.                    ***/
 
   /* Write your code here */
-  /* For example: for(;;) { } */
+  for(;;) {
+  	  Bit1_ClrVal();
+  	  Bit2_SetVal();
+  	  WAIT1_Waitms(250);
+  	  Bit1_SetVal();
+  	  Bit2_ClrVal();
+  	  WAIT1_Waitms(250);
+  }
+
 
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
   /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
