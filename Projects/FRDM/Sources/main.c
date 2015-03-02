@@ -33,12 +33,10 @@
 #include "WAIT1.h"
 #include "Bit1.h"
 #include "BitIoLdd3.h"
-#include "LED1.h"
-#include "LEDpin1.h"
-#include "BitIoLdd2.h"
-#include "LED2.h"
-#include "LEDpin2.h"
 #include "BitIoLdd1.h"
+#include "Bit2.h"
+#include "BitIoLdd4.h"
+#include "Bit3.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -59,10 +57,19 @@ int main(void)
   /* Write your code here */
   for(;;)
   {
+	  Bit1_ClrVal();
+WAIT1_Waitms(1000);
   Bit1_SetVal();
   WAIT1_Waitms(1000);
-  Bit1_ClrVal();
+  Bit2_ClrVal();
   WAIT1_Waitms(1000);
+  Bit2_SetVal();
+  WAIT1_Waitms(1000);
+  Bit3_ClrVal();
+  WAIT1_Waitms(1000);
+  Bit3_SetVal();
+  WAIT1_Waitms(1000);
+
   }
   /* For example: for(;;) { } */
 

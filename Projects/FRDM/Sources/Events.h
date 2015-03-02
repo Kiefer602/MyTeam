@@ -37,12 +37,10 @@
 #include "WAIT1.h"
 #include "Bit1.h"
 #include "BitIoLdd3.h"
-#include "LED1.h"
-#include "LEDpin1.h"
-#include "BitIoLdd2.h"
-#include "LED2.h"
-#include "LEDpin2.h"
 #include "BitIoLdd1.h"
+#include "Bit2.h"
+#include "BitIoLdd4.h"
+#include "Bit3.h"
 
 #ifdef __cplusplus
 extern "C" {
