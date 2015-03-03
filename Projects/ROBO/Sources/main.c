@@ -30,19 +30,11 @@
 /* Including needed modules to compile this module/procedure */
 #include "Cpu.h"
 #include "Events.h"
-//#include "Bit1.h"
-//#include "BitIoLdd1.h"
-#include "LEDBit2.h"
-#include "LEDpin2.h"
-#include "BitIoLdd2.h"
-#include "WAIT1.h"
-#include "LEDBit1.h"
-#include "LEDpin1.h"
+#include "Bit1.h"
 #include "BitIoLdd1.h"
-//#include "Bit2.h"
-//#include "Bit3.h"
-//#include "Bit4.h"
-//#include "BitIoLdd2.h"
+#include "WAIT1.h"
+#include "Bit2.h"
+#include "BitIoLdd2.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -56,7 +48,7 @@ int main(void)
 {
   /* Write your local variable definition here */
 		//LED0=USR_LED_R;
-		//LEDBit2=USR_LED_L;
+		//LED1=USR_LED_L;
   /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
   PE_low_level_init();
   /*** End of Processor Expert internal initialization.                    ***/
@@ -64,11 +56,11 @@ int main(void)
   /* Write your code here */
 
   for(;;) {						///run code loop continuously
-	  LEDBit1_Off();			///set LED 2 off
-	  LEDBit2_On();			///set LED 1 on
+	  Bit2_SetVal();			///set LED 2 off
+	  Bit1_ClrVal();			///set LED 1 on
   	  WAIT1_Waitms(250);		///wait 1/4 sec
-  	  LEDBit2_Off();			///set LED 1 off
-  	  LEDBit1_On();			///set LED 2 on
+  	  Bit1_SetVal();			///set LED 1 off
+  	  Bit2_ClrVal();			///set LED 2 on
   	  WAIT1_Waitms(250);		///wait 1/4 sec
   }
 
