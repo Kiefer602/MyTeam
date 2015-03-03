@@ -36,8 +36,14 @@
 #include "IO_Map.h"
 #include "Bit1.h"
 #include "BitIoLdd1.h"
+#include "LEDBit2.h"
+#include "LEDpin2.h"
 #include "WAIT1.h"
+#include "LEDBit1.h"
+#include "LEDpin1.h"
 #include "Bit2.h"
+#include "Bit3.h"
+#include "Bit4.h"
 #include "BitIoLdd2.h"
 
 #ifdef __cplusplus

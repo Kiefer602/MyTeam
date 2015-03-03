@@ -40,8 +40,6 @@
 #include "Bit4.h"
 #include "Bit5.h"
 #include "Bit6.h"
-#include "LED4.h"
-#include "LEDpin4.h"
 #include "BitIoLdd1.h"
 #include "LEDBit2.h"
 #include "LEDpin2.h"
@@ -69,18 +67,18 @@ int main(void)
   /* Write your code here */
   for(;;)
   {
-	  Bit1_ClrVal();
-WAIT1_Waitms(1000);
-  Bit1_SetVal();
-  WAIT1_Waitms(1000);
-  Bit2_ClrVal();
-  WAIT1_Waitms(1000);
-  Bit2_SetVal();
-  WAIT1_Waitms(1000);
-  Bit3_ClrVal();
-  WAIT1_Waitms(1000);
-  Bit3_SetVal();
-  WAIT1_Waitms(1000);
+	LEDBit1_On();
+	WAIT1_Waitms(1000);
+	LEDBit1_Off();
+	WAIT1_Waitms(1000);
+	LEDBit2_On();
+	WAIT1_Waitms(1000);
+	LEDBit2_Off();
+	WAIT1_Waitms(1000);
+	LEDBit3_On();
+	WAIT1_Waitms(1000);
+	LEDBit3_Off();
+	WAIT1_Waitms(1000);
 
   }
   /* For example: for(;;) { } */
