@@ -31,12 +31,23 @@
 #include "Cpu.h"
 #include "Events.h"
 #include "WAIT1.h"
-#include "Bit1.h"
+#include "LEDBit1.h"
+#include "LEDpin1.h"
 #include "BitIoLdd3.h"
-#include "BitIoLdd1.h"
+#include "Bit1.h"
 #include "Bit2.h"
-#include "BitIoLdd4.h"
 #include "Bit3.h"
+#include "Bit4.h"
+#include "Bit5.h"
+#include "Bit6.h"
+#include "LED4.h"
+#include "LEDpin4.h"
+#include "BitIoLdd1.h"
+#include "LEDBit2.h"
+#include "LEDpin2.h"
+#include "BitIoLdd2.h"
+#include "LEDBit3.h"
+#include "LEDpin3.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -44,6 +55,7 @@
 #include "IO_Map.h"
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include "led.h"
+#include "Platform.h"
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
 int main(void)
 /*lint -restore Enable MISRA rule (6.3) checking. */
