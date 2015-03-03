@@ -54,13 +54,14 @@ int main(void)
   /*** End of Processor Expert internal initialization.                    ***/
 
   /* Write your code here */
-  for(;;) {
-  	  Bit1_ClrVal();
-  	  Bit2_SetVal();
-  	  WAIT1_Waitms(250);
-  	  Bit1_SetVal();
-  	  Bit2_ClrVal();
-  	  WAIT1_Waitms(250);
+
+  for(;;) {						///run code loop continuously
+	  Bit2_SetVal();			///set LED 2 off
+	  Bit1_ClrVal();			///set LED 1 on
+  	  WAIT1_Waitms(250);		///wait 1/4 sec
+  	  Bit1_SetVal();			///set LED 1 off
+  	  Bit2_ClrVal();			///set LED 2 on
+  	  WAIT1_Waitms(250);		///wait 1/4 sec
   }
 
 
