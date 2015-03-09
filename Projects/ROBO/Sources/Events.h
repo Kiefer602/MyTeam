@@ -44,6 +44,8 @@
 #include "Bit2.h"
 #include "Bit3.h"
 #include "Bit4.h"
+#include "HF1.h"
+#include "CS1.h"
 #include "BitIoLdd2.h"
 
 #ifdef __cplusplus

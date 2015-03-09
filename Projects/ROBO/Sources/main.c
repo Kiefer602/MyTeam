@@ -39,6 +39,8 @@
 #include "Bit2.h"
 #include "Bit3.h"
 #include "Bit4.h"
+#include "HF1.h"
+#include "CS1.h"
 #include "WAIT1.h"
 #include "LEDBit1.h"
 #include "LEDpin1.h"
@@ -64,6 +66,8 @@ int main(void)
   /* Write your code here */
 
   for(;;) {						///run code loop continuously
+	  CS1_CriticalVariable();
+	  CS1_EnterCritical();
 	  LEDBit1_Off();			///set LED 2 off
 	  WAIT1_Waitms(50);
 	  LEDBit2_On();				///set LED 1 on
@@ -80,6 +84,7 @@ int main(void)
   	  WAIT1_Waitms(60);
   	  LEDBit1_On();
   	  WAIT1_Waitms(170);
+  	  CS1_ExitCritical();
   }
 
 
