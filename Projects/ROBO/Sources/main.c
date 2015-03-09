@@ -43,10 +43,6 @@
 #include "LEDBit1.h"
 #include "LEDpin1.h"
 #include "BitIoLdd1.h"
-//#include "Bit2.h"
-//#include "Bit3.h"
-//#include "Bit4.h"
-//#include "BitIoLdd2.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -69,11 +65,21 @@ int main(void)
 
   for(;;) {						///run code loop continuously
 	  LEDBit1_Off();			///set LED 2 off
-	  LEDBit2_On();			///set LED 1 on
-  	  WAIT1_Waitms(250);		///wait 1/4 sec
+	  WAIT1_Waitms(30);
+	  LEDBit2_On();				///set LED 1 on
+  	  WAIT1_Waitms(100);		///wait 1/4 sec
+  	  LEDBit2_Off();
+  	  WAIT1_Waitms(70);
+  	  LEDBit2_On();
+  	  WAIT1_Waitms(170);
   	  LEDBit2_Off();			///set LED 1 off
-  	  LEDBit1_On();			///set LED 2 on
-  	  WAIT1_Waitms(250);		///wait 1/4 sec
+  	  WAIT1_Waitms(30);
+  	  LEDBit1_On();				///set LED 2 on
+  	  WAIT1_Waitms(100);		///wait 1/4 sec
+  	  LEDBit1_Off();
+  	  WAIT1_Waitms(70);
+  	  LEDBit1_On();
+  	  WAIT1_Waitms(170);
   }
 
 
