@@ -10,7 +10,7 @@
 #include "Platform.h"
 
 #if PL_NOF_LEDS >= 1
-  #include "LedBit1.h"
+  #include "LEDBit1.h"
   #define LED1_On()     LedBit1_ClrVal()
   #define LED1_Off()    LedBit1_SetVal()
   #define LED1_Neg()    LedBit1_NegVal()
@@ -29,7 +29,7 @@
 #endif
 
 #if PL_NOF_LEDS >= 2
-  #include "LedBit2.h"
+  #include "LEDBit2.h"
   #define LED2_On()     LedBit2_ClrVal()
   #define LED2_Off()    LedBit2_SetVal()
   #define LED2_Neg()    LedBit2_NegVal()
@@ -48,7 +48,7 @@
 #endif
 
 #if PL_NOF_LEDS >= 3
-  #include "LedBit3.h"
+  #include "LEDBit3.h"
   #define LED3_On()     LedBit3_ClrVal()
   #define LED3_Off()    LedBit3_SetVal()
   #define LED3_Neg()    LedBit3_NegVal()
