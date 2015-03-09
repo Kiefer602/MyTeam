@@ -37,7 +37,7 @@
       <File Name="Generated_Code/PE_LDD.h" FileDate="2015-03-09, 08:47:47" FileAge="1425887267553" FileType="45637" CompNumb="4" />
       <File Name="Static_Code/PDD/RTC_PDD.h" FileDate="2014-02-28, 12:07:24" FileAge="1393585644000" FileType="262144" />
       <File Name="Static_Code/PDD/MCM_PDD.h" FileDate="2014-02-28, 12:07:24" FileAge="1393585644000" FileType="262144" />
-      <File Name="Sources/main.c" FileDate="2015-03-09, 10:50:13" FileAge="1425894613893" FileType="128" />
+      <File Name="Sources/main.c" FileDate="2015-03-09, 10:34:39" FileAge="1425893679661" FileType="128" />
       <File Name="Static_Code/PDD/LPTMR_PDD.h" FileDate="2014-02-28, 12:07:24" FileAge="1393585644000" FileType="262144" />
       <File Name="Generated_Code/PE_LDD.c" FileDate="2015-03-09, 09:11:46" FileAge="1425888706574" FileType="45637" CompNumb="4" />
       <File Name="Static_Code/PDD/CRC_PDD.h" FileDate="2014-02-28, 12:07:24" FileAge="1393585644000" FileType="262144" />
@@ -82,8 +82,8 @@
       <File Name="Generated_Code/BitIoLdd1.c" FileDate="2015-03-09, 09:11:46" FileAge="1425888706500" FileType="45637" CompNumb="23" />
       <File Name="Static_Code/PDD/FTFE_PDD.h" FileDate="2014-01-13, 12:52:50" FileAge="1389613970000" FileType="262144" />
       <File Name="Static_Code/PDD/SAI_PDD.h" FileDate="2014-02-28, 12:07:24" FileAge="1393585644000" FileType="262144" />
-      <File Name="Static_Code/PDD/DMA_PDD.h" FileDate="2014-02-28, 12:07:24" FileAge="1393585644000" FileType="262144" />
       <File Name="Documentation/doxygen/pex.css" FileDate="2015-03-09, 08:47:47" FileAge="1425887267392" FileType="16384" CompNumb="4" />
+      <File Name="Static_Code/PDD/DMA_PDD.h" FileDate="2014-02-28, 12:07:24" FileAge="1393585644000" FileType="262144" />
       <File Name="Static_Code/PDD/SPI_PDD.h" FileDate="2014-02-28, 12:07:24" FileAge="1393585644000" FileType="262144" />
       <File Name="Static_Code/PDD/EWM_PDD.h" FileDate="2014-02-28, 12:07:24" FileAge="1393585644000" FileType="262144" />
       <File Name="Static_Code/PDD/SIM_PDD.h" FileDate="2014-05-14, 11:09:28" FileAge="1400058568000" FileType="262144" />
@@ -91,10 +91,10 @@
       <File Name="Static_Code/PDD/DAC_PDD.h" FileDate="2014-02-28, 12:07:24" FileAge="1393585644000" FileType="262144" />
       <File Name="Static_Code/PDD/FTM_PDD.h" FileDate="2014-02-28, 12:07:24" FileAge="1393585644000" FileType="262144" />
       <File Name="Documentation/doxygen/BitIoLdd2_component.txt" FileDate="2015-03-09, 09:11:46" FileAge="1425888706541" FileType="45637" CompNumb="26" />
-      <File Name="Documentation/robo_SIGNALS.txt" FileDate="2015-03-09, 10:50:19" FileAge="1425894619714" FileType="3072" />
+      <File Name="Documentation/robo_SIGNALS.txt" FileDate="2015-03-09, 10:34:45" FileAge="1425893685436" FileType="3072" />
       <File Name="Static_Code/PDD/CMT_PDD.h" FileDate="2014-01-13, 12:52:50" FileAge="1389613970000" FileType="262144" />
       <File Name="Sources/Events.h" FileDate="2015-03-09, 08:31:58" FileAge="1425886318070" FileType="131328" />
     </GeneratedByPE>
   </GeneratedFilesList>
-  <CodeGenReference>6</CodeGenReference>
+  <CodeGenReference>5</CodeGenReference>
 </CodeGenerationInfo>

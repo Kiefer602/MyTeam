@@ -65,19 +65,19 @@ int main(void)
 
   for(;;) {						///run code loop continuously
 	  LEDBit1_Off();			///set LED 2 off
-	  WAIT1_Waitms(50);
+	  WAIT1_Waitms(30);
 	  LEDBit2_On();				///set LED 1 on
-  	  WAIT1_Waitms(90);		///wait 1/4 sec
+  	  WAIT1_Waitms(100);		///wait 1/4 sec
   	  LEDBit2_Off();
-  	  WAIT1_Waitms(60);
+  	  WAIT1_Waitms(70);
   	  LEDBit2_On();
   	  WAIT1_Waitms(170);
   	  LEDBit2_Off();			///set LED 1 off
-  	  WAIT1_Waitms(50);
+  	  WAIT1_Waitms(30);
   	  LEDBit1_On();				///set LED 2 on
-  	  WAIT1_Waitms(90);		///wait 1/4 sec
+  	  WAIT1_Waitms(100);		///wait 1/4 sec
   	  LEDBit1_Off();
-  	  WAIT1_Waitms(60);
+  	  WAIT1_Waitms(70);
   	  LEDBit1_On();
   	  WAIT1_Waitms(170);
   }
