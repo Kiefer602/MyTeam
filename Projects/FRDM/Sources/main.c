@@ -63,22 +63,24 @@ int main(void)
   /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
   PE_low_level_init();
   /*** End of Processor Expert internal initialization.                    ***/
-
+  LEDBit1_Init();	//init leds
+  LEDBit2_Init();
+  LEDBit3_Init();
   /* Write your code here */
   for(;;)
   {
-	LEDBit1_On();
-	WAIT1_Waitms(1000);
-	LEDBit1_Off();
-	WAIT1_Waitms(1000);
-	LEDBit2_On();
-	WAIT1_Waitms(1000);
-	LEDBit2_Off();
-	WAIT1_Waitms(1000);
-	LEDBit3_On();
-	WAIT1_Waitms(1000);
-	LEDBit3_Off();
-	WAIT1_Waitms(1000);
+	LEDBit1_On();		//turn led 1 on
+	WAIT1_Waitms(1000);	//wait 1 sec
+	LEDBit1_Off();		// turn led 1 off
+	WAIT1_Waitms(1000);	//wait 1 sec
+	LEDBit2_On();		//turn led 1 on
+	WAIT1_Waitms(1000);	//wait 1 sec
+	LEDBit2_Off();		// turn led 1 off
+	WAIT1_Waitms(1000);	//wait 1 sec
+	LEDBit3_On();		//turn led 1 on
+	WAIT1_Waitms(1000);	//wait 1 sec
+	LEDBit3_Off();		// turn led 1 off
+	WAIT1_Waitms(1000);	//wait 1 sec
 
   }
   /* For example: for(;;) { } */
