@@ -34,6 +34,14 @@
 #include "LEDBit1.h"
 #include "LEDpin1.h"
 #include "BitIoLdd3.h"
+#include "Bit1.h"
+#include "Bit2.h"
+#include "Bit3.h"
+#include "Bit4.h"
+#include "Bit5.h"
+#include "Bit6.h"
+#include "CS1.h"
+#include "HF1.h"
 #include "BitIoLdd1.h"
 #include "LEDBit2.h"
 #include "LEDpin2.h"
@@ -57,22 +65,25 @@ int main(void)
   /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
   PE_low_level_init();
   /*** End of Processor Expert internal initialization.                    ***/
-
   /* Write your code here */
   for(;;)
   {
-	LED1_On();		//turn led 1 on
+	CS1_CriticalVariable();
+	CS1_EnterCritical();
+	LEDBit1_On();		//turn led 1 on
 	WAIT1_Waitms(1000);	//wait 1 sec
 	LEDBit1_Off();		// turn led 1 off
 	WAIT1_Waitms(1000);	//wait 1 sec
 	LEDBit2_On();		//turn led 1 on
 	WAIT1_Waitms(1000);	//wait 1 sec
+	//HF1_HardFaultHandler();
 	LEDBit2_Off();		// turn led 1 off
 	WAIT1_Waitms(1000);	//wait 1 sec
 	LEDBit3_On();		//turn led 1 on
 	WAIT1_Waitms(1000);	//wait 1 sec
 	LEDBit3_Off();		// turn led 1 off
 	WAIT1_Waitms(1000);	//wait 1 sec
+	CS1_ExitCritical();
 
   }
   /* For example: for(;;) { } */
