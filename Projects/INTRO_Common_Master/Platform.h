@@ -33,6 +33,8 @@
   /*!< Set to 1 to enable LED support, 0 otherwise */
 #define PL_HAS_EVENTS   (1)
   /*!< Set to 1 to enable events, 0 otherwise */
+#define PL_HAS_TIMER    (1)
+  /*!< Set to 1 to enable timers, 0 otherwise */
 
 #if PL_IS_FRDM
   #define PL_NOF_LEDS       (3)

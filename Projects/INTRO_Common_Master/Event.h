@@ -16,7 +16,8 @@
 #if PL_HAS_EVENTS
 
 typedef enum EVNT_Handle {
-  EVNT_INIT,            /*!< System Initialization Event */
+  EVNT_STARTUP,            /*!< System startup Event */
+  EVENT_LED_HEARTBEAT,     /*!< LED heartbeat */
   /*!< \todo Your events here */
   EVNT_NOF_EVENTS       /*!< Must be last one! */
 } EVNT_Handle;
