@@ -33,6 +33,8 @@
 - \subpage Bit2
 - \subpage Bit3
 - \subpage Bit4
+- \subpage TU1
+- \subpage TimerIntLdd1
 
 */
 

@@ -7,7 +7,7 @@
 **     Version     : Component 01.014, Driver 01.04, CPU db: 3.00.000
 **     Datasheet   : K22P144M100SF5RM, Rev.2, Apr 2013
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-09, 11:51, # CodeGen: 8
+**     Date/Time   : 2015-03-16, 10:44, # CodeGen: 9
 **     Abstract    :
 **
 **     Settings    :
@@ -73,6 +73,9 @@
 #include "Bit4.h"
 #include "HF1.h"
 #include "CS1.h"
+#include "TI1.h"
+#include "TimerIntLdd1.h"
+#include "TU1.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
@@ -300,6 +303,9 @@ void PE_low_level_init(void)
   /* ### HardFault "HF1" init code ... */
   /* Write code here ... */
   /* ### CriticalSection "CS1" init code ... */
+  /* ### TimerInt_LDD "TimerIntLdd1" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)TimerIntLdd1_Init(NULL);
+  /* ### TimerInt "TI1" init code ... */
   /* Enable interrupts of the given priority level */
   Cpu_SetBASEPRI(0U);
 }

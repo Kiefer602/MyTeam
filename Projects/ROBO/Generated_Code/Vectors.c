@@ -5,7 +5,7 @@
 **     Processor   : MK22FX512VLQ12
 **     Version     : Component 01.014, Driver 01.04, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-09, 11:51, # CodeGen: 8
+**     Date/Time   : 2015-03-16, 10:44, # CodeGen: 9
 **     Abstract    :
 **
 **     Settings    :
@@ -67,6 +67,9 @@
   #include "Bit4.h"
   #include "HF1.h"
   #include "CS1.h"
+  #include "TI1.h"
+  #include "TimerIntLdd1.h"
+  #include "TU1.h"
   #include "Events.h"
 
 
@@ -144,7 +147,7 @@
     (tIsrFunc)&Cpu_Interrupt,          /* 0x37  0x000000DC   -   ivINT_ADC0                     unused by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x38  0x000000E0   -   ivINT_CMP0                     unused by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x39  0x000000E4   -   ivINT_CMP1                     unused by PE */
-    (tIsrFunc)&Cpu_Interrupt,          /* 0x3A  0x000000E8   -   ivINT_FTM0                     unused by PE */
+    (tIsrFunc)&TU1_Interrupt,          /* 0x3A  0x000000E8   8   ivINT_FTM0                     used by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x3B  0x000000EC   -   ivINT_FTM1                     unused by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x3C  0x000000F0   -   ivINT_FTM2                     unused by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x3D  0x000000F4   -   ivINT_CMT                      unused by PE */

@@ -125,6 +125,15 @@ Module "CS1"       (component CriticalSection)
    - CS1_EnterCritical -Enters a critical section
    - CS1_ExitCritical -Exits a critical section
 
+Module "TI1"       (component TimerInt)
+
+Module "TU1"       (component TimerUnit_LDD)
+   - TU1_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
+                interrupt priority, sets pin routing, sets timing, etc. If the property <"Enable in init. code"> is set to 
+                "yes" value then the device is also enabled (see the description of the <Enable> method). In this case the 
+                <Enable> method is not necessary and needn't to be generated. This method can be called only once. Before the 
+                second call of Init the <Deinit> must be called first.
+
 Module "Cpu"       (component MK22FN1M0LQ12)
 
 ===================================================================================
