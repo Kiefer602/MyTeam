@@ -55,7 +55,7 @@
 #include "BitIoLdd2.h"
 #include "LEDBit3.h"
 #include "LEDpin3.h"
-#include "led.h"
+#include "LED.h"
 #include "Platform.h"
 
 #ifdef __cplusplus
