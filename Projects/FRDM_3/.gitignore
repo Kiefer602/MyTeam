@@ -1,0 +1,11 @@
+*.g_c
+*.g_x
+/Generated_Code
+/Debug
+/.settings
+/Documentation
+.cwGeneratedFileSetLog
+ProjectInfo.xml
+Static_Code
+/doxy/html
+/doxy/log.txt
