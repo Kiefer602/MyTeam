@@ -88,6 +88,7 @@ int main(void)
   	  LEDBit1_On();
   	  WAIT1_Waitms(170);
   	  CS1_ExitCritical();
+  	  TI1_OnInterrupt();
   }
 
 
