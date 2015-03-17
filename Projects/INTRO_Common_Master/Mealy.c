@@ -113,8 +113,8 @@ const uint8_t tbl[9][2][2] = /* format: {next,output} */
    /*E*/ {{E,LED1}, {F,LED2}},
    /*F*/ {{G,LED1}, {F,LED2}},
    /*G*/ {{G,LED1}, {H,LED2}},
-   /*I*/ {{J,LED3}, {H,LED2}},
-   /*J*/ {{J,LED3}, {B,LED1}},
+   /*I*/ {{I,LED3}, {H,LED2}},
+   /*J*/ {{I,LED3}, {B,LED1}},
  };
 #elif PL_NOF_LEDS==4
 const uint8_t tbl[5][2][2] = /* format: {next,output} */
