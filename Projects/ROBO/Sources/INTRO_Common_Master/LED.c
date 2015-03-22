@@ -57,7 +57,7 @@ void LED_Test(void) {
 
 
 void LED_Init(void) {
-#if 1
+#if 0
   LED_Test();
 #endif
   /* all LED's off by default */

@@ -158,7 +158,7 @@
     </GenFiles>
     <SignalListFile>Documentation\robo_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>GNUC</DestinationCompiler>
-    <ProjectModificationStamp>21</ProjectModificationStamp>
+    <ProjectModificationStamp>22</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>false</Generated>

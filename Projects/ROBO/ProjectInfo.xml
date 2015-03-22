@@ -72,9 +72,13 @@
       <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Generated_Code\WAIT1.c</PathName>
       <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Project_Settings\Startup_Code\startup.c</PathName>
       <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Sources\Events.c</PathName>
+      <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Sources\INTRO_Common_Master\Application.c</PathName>
       <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Sources\INTRO_Common_Master\Event.c</PathName>
+      <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Sources\INTRO_Common_Master\Keys.c</PathName>
       <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Sources\INTRO_Common_Master\LED.c</PathName>
+      <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Sources\INTRO_Common_Master\Mealy.c</PathName>
       <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Sources\INTRO_Common_Master\Platform.c</PathName>
+      <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Sources\INTRO_Common_Master\Timer.c</PathName>
       <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Sources\main.c</PathName>
     </GeneratedCs>
     <GeneratedHs>
@@ -101,9 +105,12 @@
       <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Generated_Code\TimerIntLdd1.h</PathName>
       <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Generated_Code\WAIT1.h</PathName>
       <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Sources\Events.h</PathName>
+      <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Sources\INTRO_Common_Master\Application.h</PathName>
       <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Sources\INTRO_Common_Master\Event.h</PathName>
+      <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Sources\INTRO_Common_Master\Keys.h</PathName>
       <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Sources\INTRO_Common_Master\LED.h</PathName>
       <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Sources\INTRO_Common_Master\LEDcpp.h</PathName>
+      <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Sources\INTRO_Common_Master\Mealy.h</PathName>
       <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Sources\INTRO_Common_Master\Platform.h</PathName>
       <PathName>C:\Users\James\Documents\Intro\MyTeam\Projects\ROBO\Sources\INTRO_Common_Master\Timer.h</PathName>
       <PathName>C:\Freescale\KDS_2.0.0\eclipse\ProcessorExpert\lib\Kinetis\iofiles\MK22F12.h</PathName>

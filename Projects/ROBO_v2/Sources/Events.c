@@ -1,11 +1,11 @@
 /* ###################################################################
 **     Filename    : Events.c
-**     Project     : robo
+**     Project     : INTRO_Robo_Master
 **     Processor   : MK22FX512VLQ12
 **     Component   : Events
 **     Version     : Driver 01.00
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-02-22, 21:11, # CodeGen: 0
+**     Date/Time   : 2015-02-24, 08:21, # CodeGen: 0
 **     Abstract    :
 **         This is user's event module.
 **         Put your event handler code here.
@@ -36,6 +36,9 @@ extern "C" {
 
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
+#include "Platform.h"
+#include "Timer.h"
+#include "Keys.h"
 
 /*
 ** ===================================================================
@@ -71,7 +74,30 @@ void Cpu_OnNMIINT(void)
 */
 void TI1_OnInterrupt(void)
 {
-	/*TMR_OnInterrupt();*/
+#if PL_HAS_TIMER
+  TMR_OnInterrupt();
+#endif
+}
+
+/*
+** ===================================================================
+**     Event       :  SW1_OnInterrupt (module Events)
+**
+**     Component   :  SW1 [ExtInt]
+**     Description :
+**         This event is called when an active signal edge/level has
+**         occurred.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void SW1_OnInterrupt(void)
+{
+#if PL_HAS_KBI
+  if (KEY1_Get()) {
+    KEY_OnInterrupt(KEY_BTN1);
+  }
+#endif
 }
 
 /* END Events */

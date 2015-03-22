@@ -14,6 +14,9 @@
 #include "Platform.h"
 #include "LED.h"
 #include "Event.h"
+#include "Timer.h"
+#include "Mealy.h"
+#include "Keys.h"
 
 void PL_Init(void) {
 #if PL_HAS_LED
@@ -22,9 +25,27 @@ void PL_Init(void) {
 #if PL_HAS_EVENTS
   EVNT_Init();
 #endif
+#if PL_HAS_TIMER
+  TMR_Init();
+#endif
+#if PL_HAS_KEYS
+  KEY_Init();
+#endif
+#if PL_HAS_MEALY
+  MEALY_Init();
+#endif
 }
 
 void PL_Deinit(void) {
+#if PL_HAS_MEALY
+  MEALY_Deinit();
+#endif
+#if PL_HAS_KEYS
+  KEY_Deinit();
+#endif
+#if PL_HAS_TIMER
+  TMR_Deinit();
+#endif
 #if PL_HAS_EVENTS
   EVNT_Deinit();
 #endif

@@ -1,10 +1,10 @@
 /* ###################################################################
 **     Filename    : main.c
-**     Project     : robo
+**     Project     : INTRO_Robo_Master
 **     Processor   : MK22FX512VLQ12
 **     Version     : Driver 01.01
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-02-22, 21:11, # CodeGen: 0
+**     Date/Time   : 2015-02-24, 08:21, # CodeGen: 0
 **     Abstract    :
 **         Main module.
 **         This module contains user's application code.
@@ -30,69 +30,44 @@
 /* Including needed modules to compile this module/procedure */
 #include "Cpu.h"
 #include "Events.h"
-//#include "Bit1.h"
-//#include "BitIoLdd1.h"
-#include "LEDBit2.h"
-#include "LEDpin2.h"
-#include "BitIoLdd2.h"
-#include "Bit1.h"
-#include "Bit2.h"
-#include "Bit3.h"
-#include "Bit4.h"
-#include "HF1.h"
+#include "WAIT1.h"
+#include "LedBit1.h"
+#include "BitIoLdd3.h"
+#include "LedBit2.h"
+#include "BitIoLdd4.h"
 #include "CS1.h"
+#include "HF1.h"
 #include "TI1.h"
 #include "TimerIntLdd1.h"
 #include "TU1.h"
-#include "WAIT1.h"
-#include "LEDBit1.h"
-#include "LEDpin1.h"
-#include "BitIoLdd1.h"
+#include "CLS1.h"
+#include "UTIL1.h"
+#include "BT1.h"
+#include "Serial3.h"
+#include "ASerialLdd3.h"
+#include "SW1.h"
+#include "ExtIntLdd1.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
 /* User includes (#include below this line is not maintained by Processor Expert) */
+#include "Application.h"
 
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
 int main(void)
 /*lint -restore Enable MISRA rule (6.3) checking. */
 {
   /* Write your local variable definition here */
-		//LED0=USR_LED_R;
-		//LEDBit2=USR_LED_L;
+
   /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
   PE_low_level_init();
   /*** End of Processor Expert internal initialization.                    ***/
 
   /* Write your code here */
-
-  for(;;) {						///run code loop continuously
-	  /*CS1_CriticalVariable();
-	  CS1_EnterCritical();
-	  LEDBit1_Off();			///set LED 2 off
-	  WAIT1_Waitms(50);
-	  LEDBit2_On();				///set LED 1 on
-  	  WAIT1_Waitms(90);		///wait 1/4 sec
-  	  LEDBit2_Off();
-  	  WAIT1_Waitms(60);
-  	  LEDBit2_On();
-  	  WAIT1_Waitms(170);
-  	  LEDBit2_Off();			///set LED 1 off
-  	  WAIT1_Waitms(50);
-  	  LEDBit1_On();				///set LED 2 on
-  	  WAIT1_Waitms(90);		///wait 1/4 sec
-  	  LEDBit1_Off();
-  	  WAIT1_Waitms(60);
-  	  LEDBit1_On();
-  	  WAIT1_Waitms(170);
-  	  CS1_ExitCritical();*/
-  	  TI1_Enable();
-  	  TMR_TICK_MS(500);
-  	  TI1_Disable();
-  }
-
+  /* For example: for(;;) { } */
+  APP_Run();
 
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
   /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/

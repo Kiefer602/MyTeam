@@ -1,11 +1,11 @@
 /* ###################################################################
-**     Filename    : Events.c
-**     Project     : robo
+**     Filename    : Events.h
+**     Project     : INTRO_Robo_Master
 **     Processor   : MK22FX512VLQ12
 **     Component   : Events
 **     Version     : Driver 01.00
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-02-22, 21:11, # CodeGen: 0
+**     Date/Time   : 2015-02-24, 08:21, # CodeGen: 0
 **     Abstract    :
 **         This is user's event module.
 **         Put your event handler code here.
@@ -15,7 +15,7 @@
 **
 ** ###################################################################*/
 /*!
-** @file Events.c
+** @file Events.h
 ** @version 01.00
 ** @brief
 **         This is user's event module.
@@ -25,17 +25,36 @@
 **  @addtogroup Events_module Events module documentation
 **  @{
 */         
+
+#ifndef __Events_H
+#define __Events_H
 /* MODULE Events */
 
-#include "Cpu.h"
-#include "Events.h"
+#include "PE_Types.h"
+#include "PE_Error.h"
+#include "PE_Const.h"
+#include "IO_Map.h"
+#include "WAIT1.h"
+#include "LedBit1.h"
+#include "BitIoLdd3.h"
+#include "LedBit2.h"
+#include "BitIoLdd4.h"
+#include "CS1.h"
+#include "HF1.h"
+#include "TI1.h"
+#include "TimerIntLdd1.h"
+#include "TU1.h"
+#include "CLS1.h"
+#include "UTIL1.h"
+#include "BT1.h"
+#include "Serial3.h"
+#include "ASerialLdd3.h"
+#include "SW1.h"
+#include "ExtIntLdd1.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif 
-
-
-/* User includes (#include below this line is not maintained by Processor Expert) */
 
 /*
 ** ===================================================================
@@ -50,10 +69,8 @@ extern "C" {
 **         interrupt] property is set to 'Enabled'.
 */
 /* ===================================================================*/
-void Cpu_OnNMIINT(void)
-{
-  /* Write your code here ... */
-}
+void Cpu_OnNMIINT(void);
+
 
 /*
 ** ===================================================================
@@ -69,10 +86,21 @@ void Cpu_OnNMIINT(void)
 **     Returns     : Nothing
 ** ===================================================================
 */
-void TI1_OnInterrupt(void)
-{
-	/*TMR_OnInterrupt();*/
-}
+void TI1_OnInterrupt(void);
+
+void SW1_OnInterrupt(void);
+/*
+** ===================================================================
+**     Event       :  SW1_OnInterrupt (module Events)
+**
+**     Component   :  SW1 [ExtInt]
+**     Description :
+**         This event is called when an active signal edge/level has
+**         occurred.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
 
 /* END Events */
 
@@ -80,6 +108,8 @@ void TI1_OnInterrupt(void)
 }  /* extern "C" */
 #endif 
 
+#endif 
+/* ifndef __Events_H*/
 /*!
 ** @}
 */
