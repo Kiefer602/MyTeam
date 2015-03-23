@@ -15,6 +15,8 @@
 #include "CLS1.h"
 #include "Mealy.h"
 #include "Keys.h"
+#include "KeyDebounce.h"
+#include "Debounce.h"
 
 /*!
  * \brief Application event handler
