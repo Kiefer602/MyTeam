@@ -63,6 +63,7 @@ int main(void)
 
   /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
   PE_low_level_init();
+  KEYDBNC_Scan();
   /*** End of Processor Expert internal initialization.                    ***/
 
   /* Write your code here */
