@@ -199,12 +199,13 @@ static DBNC_FSMData KEYDBNC_FSMdata = {
   DBNC_KEY_IDLE, /* initial state machine state, here the state is stored */
   0, /* key scan value */
   0, /* long key count */
-  TRG_KEYPRESS, /* trigger to be used */
+  //TRG_KEYPRESS, /* trigger to be used */
   (50/TRG_TICKS_MS), /* debounceTicks for 50 ms */
   (500/TRG_TICKS_MS), /* longKeyTicks for 500 ms */
 };
 
 void KEYDBNC_Scan(void) {
+	DBNC_Scan(&KEYDBNC_FSMdata);
   /** \todo call DBNC_Scan(&KEYDBNC_FSMdata);
    * But be careful: only if we are not debouncing, and if we have a key press if we are polling.
    * And you will need to disable the keyboard interrupts too!
