@@ -1,5 +1,5 @@
 /* ###################################################################
-**     Filename    : Events.c
+**     Filename    : Events.h
 **     Project     : INTRO_FRDM_Master
 **     Processor   : MKL25Z128VLK4
 **     Component   : Events
@@ -15,7 +15,7 @@
 **
 ** ###################################################################*/
 /*!
-** @file Events.c
+** @file Events.h
 ** @version 01.00
 ** @brief
 **         This is user's event module.
@@ -25,20 +25,51 @@
 **  @addtogroup Events_module Events module documentation
 **  @{
 */         
+
+#ifndef __Events_H
+#define __Events_H
 /* MODULE Events */
 
-#include "Cpu.h"
-#include "Events.h"
+#include "PE_Types.h"
+#include "PE_Error.h"
+#include "PE_Const.h"
+#include "IO_Map.h"
+#include "UTIL1.h"
+#include "WAIT1.h"
+#include "LedBit1.h"
+#include "BitIoLdd3.h"
+#include "LedBit2.h"
+#include "BitIoLdd4.h"
+#include "LedBit3.h"
+#include "BitIoLdd5.h"
+#include "CS1.h"
+#include "HF1.h"
+#include "TI1.h"
+#include "TimerIntLdd1.h"
+#include "TU1.h"
+#include "CLS1.h"
+#include "AS1.h"
+#include "ASerialLdd1.h"
+#include "SW1.h"
+#include "ExtIntLdd1.h"
+#include "SW2.h"
+#include "ExtIntLdd2.h"
+#include "SW3.h"
+#include "ExtIntLdd3.h"
+#include "PTA.h"
+#include "SW4.h"
+#include "ExtIntLdd4.h"
+#include "SW5.h"
+#include "BitIoLdd8.h"
+#include "SW6.h"
+#include "BitIoLdd9.h"
+#include "SW7.h"
+#include "ExtIntLdd5.h"
+#include "FRTOS1.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif 
-
-
-/* User includes (#include below this line is not maintained by Processor Expert) */
-#include "Platform.h"
-#include "Timer.h"
-#include "Keys.h"
 
 /*
 ** ===================================================================
@@ -53,10 +84,8 @@ extern "C" {
 **         interrupt] property is set to 'Enabled'.
 */
 /* ===================================================================*/
-void Cpu_OnNMIINT(void)
-{
-  /* Write your code here ... */
-}
+void Cpu_OnNMIINT(void);
+
 
 /*
 ** ===================================================================
@@ -72,13 +101,9 @@ void Cpu_OnNMIINT(void)
 **     Returns     : Nothing
 ** ===================================================================
 */
-void TI1_OnInterrupt(void)
-{
-#if PL_HAS_TIMER
-  TMR_OnInterrupt();
-#endif
-}
+void TI1_OnInterrupt(void);
 
+void SW7_OnInterrupt(void);
 /*
 ** ===================================================================
 **     Event       :  SW7_OnInterrupt (module Events)
@@ -91,15 +116,8 @@ void TI1_OnInterrupt(void)
 **     Returns     : Nothing
 ** ===================================================================
 */
-void SW7_OnInterrupt(void)
-{
-#if PL_HAS_KBI
-  if (KEY7_Get()) {
-    KEY_OnInterrupt(KEY_BTN7);
-  }
-#endif
-}
 
+void SW4_OnInterrupt(void);
 /*
 ** ===================================================================
 **     Event       :  SW4_OnInterrupt (module Events)
@@ -112,15 +130,8 @@ void SW7_OnInterrupt(void)
 **     Returns     : Nothing
 ** ===================================================================
 */
-void SW4_OnInterrupt(void)
-{
-#if PL_HAS_KBI
-  if (KEY4_Get()) {
-    KEY_OnInterrupt(KEY_BTN4);
-  }
-#endif
-}
 
+void SW3_OnInterrupt(void);
 /*
 ** ===================================================================
 **     Event       :  SW3_OnInterrupt (module Events)
@@ -133,25 +144,8 @@ void SW4_OnInterrupt(void)
 **     Returns     : Nothing
 ** ===================================================================
 */
-void SW3_OnInterrupt(void)
-{
-#if PL_HAS_KBI
-#if 1 /* Problem with Processor Expert and sharing PTA4/NMI interrupt: code below is missing in ExtIntLdd3_OnInterrupt() */
-  /* Check the pin interrupt flag of the shared interrupt */
-  if (PORT_PDD_GetPinInterruptFlag(PORTA_BASE_PTR, ExtIntLdd3_PIN_INDEX)) {
-    /* Clear the interrupt flag */
-    PORT_PDD_ClearPinInterruptFlag(PORTA_BASE_PTR, ExtIntLdd3_PIN_INDEX);
-    /* call user event */
-    KEY_OnInterrupt(KEY_BTN3);
-  }
-#else
-  if (KEY3_Get()) {
-    KEY_OnInterrupt(KEY_BTN3);
-  }
-#endif
-#endif
-}
 
+void SW2_OnInterrupt(void);
 /*
 ** ===================================================================
 **     Event       :  SW2_OnInterrupt (module Events)
@@ -164,15 +158,8 @@ void SW3_OnInterrupt(void)
 **     Returns     : Nothing
 ** ===================================================================
 */
-void SW2_OnInterrupt(void)
-{
-#if PL_HAS_KBI
-  if (KEY2_Get()) {
-    KEY_OnInterrupt(KEY_BTN2);
-  }
-#endif
-}
 
+void SW1_OnInterrupt(void);
 /*
 ** ===================================================================
 **     Event       :  SW1_OnInterrupt (module Events)
@@ -185,14 +172,66 @@ void SW2_OnInterrupt(void)
 **     Returns     : Nothing
 ** ===================================================================
 */
-void SW1_OnInterrupt(void)
-{
-#if PL_HAS_KBI
-  if (KEY1_Get()) {
-    KEY_OnInterrupt(KEY_BTN1);
-  }
-#endif
-}
+
+
+void FRTOS1_vApplicationMallocFailedHook(void);
+/*
+** ===================================================================
+**     Event       :  FRTOS1_vApplicationMallocFailedHook (module Events)
+**
+**     Component   :  FRTOS1 [FreeRTOS]
+**     Description :
+**         If enabled, the RTOS will call this hook in case memory
+**         allocation failed.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void FRTOS1_vApplicationStackOverflowHook(xTaskHandle pxTask, char *pcTaskName);
+/*
+** ===================================================================
+**     Event       :  FRTOS1_vApplicationStackOverflowHook (module Events)
+**
+**     Component   :  FRTOS1 [FreeRTOS]
+**     Description :
+**         if enabled, this hook will be called in case of a stack
+**         overflow.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         pxTask          - Task handle
+**       * pcTaskName      - Pointer to task name
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void FRTOS1_vApplicationTickHook(void);
+/*
+** ===================================================================
+**     Event       :  FRTOS1_vApplicationTickHook (module Events)
+**
+**     Component   :  FRTOS1 [FreeRTOS]
+**     Description :
+**         If enabled, this hook will be called by the RTOS for every
+**         tick increment.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void FRTOS1_vApplicationIdleHook(void);
+/*
+** ===================================================================
+**     Event       :  FRTOS1_vApplicationIdleHook (module Events)
+**
+**     Component   :  FRTOS1 [FreeRTOS]
+**     Description :
+**         If enabled, this hook will be called when the RTOS is idle.
+**         This might be a good place to go into low power mode.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
 
 /* END Events */
 
@@ -200,6 +239,8 @@ void SW1_OnInterrupt(void)
 }  /* extern "C" */
 #endif 
 
+#endif 
+/* ifndef __Events_H*/
 /*!
 ** @}
 */

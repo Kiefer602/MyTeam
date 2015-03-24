@@ -17,6 +17,9 @@
 #include "Timer.h"
 #include "Mealy.h"
 #include "Keys.h"
+#include "Trigger.h"
+#include "Buzzer.h"
+#include "Debounce.h"
 
 void PL_Init(void) {
 #if PL_HAS_LED
@@ -34,9 +37,27 @@ void PL_Init(void) {
 #if PL_HAS_MEALY
   MEALY_Init();
 #endif
+#if PL_HAS_TRIGGER
+  TRG_Init();
+#endif
+#if PL_HAS_BUZZER
+  BUZ_Init();
+#endif
+#if PL_HAS_DEBOUNCE
+  DBNC_Init();
+#endif
 }
 
 void PL_Deinit(void) {
+#if PL_HAS_DEBOUNCE
+  DBNC_Deinit();
+#endif
+#if PL_HAS_BUZZER
+  BUZ_Deinit();
+#endif
+#if PL_HAS_TRIGGER
+  TRG_Deinit();
+#endif
 #if PL_HAS_MEALY
   MEALY_Deinit();
 #endif

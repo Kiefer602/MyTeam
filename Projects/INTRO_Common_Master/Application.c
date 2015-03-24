@@ -15,9 +15,8 @@
 #include "CLS1.h"
 #include "Mealy.h"
 #include "Keys.h"
-#include "Debounce.h"
+#include "Buzzer.h"
 #include "KeyDebounce.h"
-#include "Trigger.h"
 
 /*!
  * \brief Application event handler
@@ -29,43 +28,92 @@ static void APP_HandleEvents(EVNT_Handle event) {
       LED1_On();
       WAIT1_Waitms(50);
       LED1_Off();
-      break;
+#if PL_HAS_BUZZER
+      BUZ_Beep(300, 500);
+#endif
+     break;
     case EVENT_LED_HEARTBEAT:
       LED1_Neg();
       break;
 #if PL_NOF_KEYS >= 1
     case EVNT_SW1_PRESSED:
       CLS1_SendStr("SW1\r\n", CLS1_GetStdio()->stdOut);
+#if PL_HAS_BUZZER
+      BUZ_Beep(300, 250);
+#endif
+      break;
+    case EVNT_SW1_LPRESSED:
+      CLS1_SendStr("SW1 long\r\n", CLS1_GetStdio()->stdOut);
+      break;
+    case EVNT_SW1_RELEASED:
+      CLS1_SendStr("SW1 release\r\n", CLS1_GetStdio()->stdOut);
+      break;
       break;
 #endif
 #if PL_NOF_KEYS >= 2
     case EVNT_SW2_PRESSED:
-      CLS1_SendStr("SW2\r\n", CLS1_GetStdio()->stdOut);
+      CLS1_SendStr("SW2 short\r\n", CLS1_GetStdio()->stdOut);
+      break;
+    case EVNT_SW2_LPRESSED:
+      CLS1_SendStr("SW2 long\r\n", CLS1_GetStdio()->stdOut);
+      break;
+    case EVNT_SW2_RELEASED:
+      CLS1_SendStr("SW2 release\r\n", CLS1_GetStdio()->stdOut);
       break;
 #endif
 #if PL_NOF_KEYS >= 3
     case EVNT_SW3_PRESSED:
       CLS1_SendStr("SW3\r\n", CLS1_GetStdio()->stdOut);
       break;
+    case EVNT_SW3_LPRESSED:
+      CLS1_SendStr("SW3 long\r\n", CLS1_GetStdio()->stdOut);
+      break;
+    case EVNT_SW3_RELEASED:
+      CLS1_SendStr("SW3 release\r\n", CLS1_GetStdio()->stdOut);
+      break;
 #endif
 #if PL_NOF_KEYS >= 4
     case EVNT_SW4_PRESSED:
       CLS1_SendStr("SW4\r\n", CLS1_GetStdio()->stdOut);
+      break;
+    case EVNT_SW4_LPRESSED:
+      CLS1_SendStr("SW4 long\r\n", CLS1_GetStdio()->stdOut);
+      break;
+    case EVNT_SW4_RELEASED:
+      CLS1_SendStr("SW4 release\r\n", CLS1_GetStdio()->stdOut);
       break;
 #endif
 #if PL_NOF_KEYS >= 5
     case EVNT_SW5_PRESSED:
       CLS1_SendStr("SW5\r\n", CLS1_GetStdio()->stdOut);
       break;
+    case EVNT_SW5_LPRESSED:
+      CLS1_SendStr("SW5 long\r\n", CLS1_GetStdio()->stdOut);
+      break;
+    case EVNT_SW5_RELEASED:
+      CLS1_SendStr("SW5 release\r\n", CLS1_GetStdio()->stdOut);
+      break;
 #endif
 #if PL_NOF_KEYS >= 6
     case EVNT_SW6_PRESSED:
       CLS1_SendStr("SW6\r\n", CLS1_GetStdio()->stdOut);
       break;
+    case EVNT_SW6_LPRESSED:
+      CLS1_SendStr("SW6 long\r\n", CLS1_GetStdio()->stdOut);
+      break;
+    case EVNT_SW6_RELEASED:
+      CLS1_SendStr("SW6 release\r\n", CLS1_GetStdio()->stdOut);
+      break;
 #endif
 #if PL_NOF_KEYS >= 7
     case EVNT_SW7_PRESSED:
       CLS1_SendStr("SW7\r\n", CLS1_GetStdio()->stdOut);
+      break;
+    case EVNT_SW7_LPRESSED:
+      CLS1_SendStr("SW7 long\r\n", CLS1_GetStdio()->stdOut);
+      break;
+    case EVNT_SW7_RELEASED:
+      CLS1_SendStr("SW7 release\r\n", CLS1_GetStdio()->stdOut);
       break;
 #endif
     default:
@@ -77,6 +125,9 @@ static void APP_HandleEvents(EVNT_Handle event) {
  * \brief Application main 'task'.
  */
 static void APP_Task(void) {
+  int cntr;
+
+  CLS1_SendStr("INFO: Application startup!\r\n", CLS1_GetStdio()->stdOut);
   EVNT_SetEvent(EVNT_STARTUP); /* set startup event */
   for(;;) {
     EVNT_HandleEvent(APP_HandleEvents);
@@ -87,9 +138,13 @@ static void APP_Task(void) {
     MEALY_Step();
 #endif
 #if 0
-    CLS1_SendStr("Hello!\r\n", CLS1_GetStdio()->stdOut);
+    cntr++;
+    if (cntr>40) {
+      cntr = 0;
+      CLS1_SendStr("Hello!\r\n", CLS1_GetStdio()->stdOut);
+    }
 #endif
-    WAIT1_Waitms(100); /* wait some time */
+    WAIT1_Waitms(50); /* wait some time */
   }
 }
 

@@ -184,6 +184,9 @@ static void KEYDBNC_OnDebounceEvent(DBNC_EventKinds event, DBNC_KeySet keys) {
       break;
     case DBNC_EVENT_END:
       /*! \todo Implement what you have to do at the end of the debouncing. Need to re-enable interrupts? */
+#if PL_HAS_KBI
+      KEY_EnableInterrupts();
+#endif
       break;
   } /* switch */
 }
@@ -199,16 +202,22 @@ static DBNC_FSMData KEYDBNC_FSMdata = {
   DBNC_KEY_IDLE, /* initial state machine state, here the state is stored */
   0, /* key scan value */
   0, /* long key count */
-  //TRG_KEYPRESS, /* trigger to be used */
+  TRG_KEYPRESS, /* trigger to be used */
   (50/TRG_TICKS_MS), /* debounceTicks for 50 ms */
   (500/TRG_TICKS_MS), /* longKeyTicks for 500 ms */
 };
 
-void KEYDBNC_Scan(void) {
-  /** \todo call DBNC_Scan(&KEYDBNC_FSMdata);
+void KEYDBNC_Process(void) {
+  /** \todo call DBNC_Process(&KEYDBNC_FSMdata);
    * But be careful: only if we are not debouncing, and if we have a key press if we are polling.
    * And you will need to disable the keyboard interrupts too!
    */
+  if (KEYDBNC_FSMdata.state==DBNC_KEY_IDLE && KEYDBNC_GetKeys()!=0) { /* a key is pressed and we are not debouncing */
+  #if PL_HAS_KBI
+    KEY_DisableInterrupts(); /* disable interrupts for all keys */
+  #endif
+    DBNC_Process(&KEYDBNC_FSMdata); /* starts the state machine */
+  }
 }
 
 void KEYDBNC_Init(void) {
