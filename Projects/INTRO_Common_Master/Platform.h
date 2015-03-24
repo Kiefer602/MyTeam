@@ -45,6 +45,7 @@
   /*!< Set to 1 for buzzer enabled, 0 otherwise */
 #define PL_HAS_DEBOUNCE       (1)
   /*!< Set to 1 for debouncing enabled, 0 otherwise */
+#define PL_HAS_RTOS			  (1)
 
 /* if keys are using interrupts or are polled */
 #if PL_IS_FRDM

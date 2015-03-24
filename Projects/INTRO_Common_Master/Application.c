@@ -116,9 +116,14 @@ static void APP_HandleEvents(EVNT_Handle event) {
       CLS1_SendStr("SW7 release\r\n", CLS1_GetStdio()->stdOut);
       break;
 #endif
+#if PL_HAS_RTOS
+      RTOS_RUN();
+#endif
     default:
       break;
+
   }
+
 }
 
 /*!

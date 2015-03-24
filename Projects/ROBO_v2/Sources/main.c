@@ -45,6 +45,7 @@
 #include "BT1.h"
 #include "Serial3.h"
 #include "ASerialLdd3.h"
+#include "FRTOS1.h"
 #include "SW1.h"
 #include "ExtIntLdd1.h"
 /* Including shared modules, which are used for whole project */
