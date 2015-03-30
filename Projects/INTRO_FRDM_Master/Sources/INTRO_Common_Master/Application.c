@@ -172,17 +172,17 @@ void APP_Run(void) {
     for(;;){} /* failed to start trace */
   }
 #endif
-//#if 1 /* create software timer */
-//  timerHndl = xTimerCreate("timer0", TIMER_PERIOD_MS/portTICK_RATE_MS, pdTRUE, (void *)0, vTimerCallback);
-//  if (timerHndl==NULL) {
-//    for(;;); /* failure! */
-//  }
-//  if (xTimerStart(timerHndl, 0)!=pdPASS) {
-//   for(;;); /* failure! */
-//  }
-//#endif
-//  PL_Init();
-//  RTOS_Run();
+#if 1 /* create software timer */
+  timerHndl = xTimerCreate("timer0", TIMER_PERIOD_MS/portTICK_RATE_MS, pdTRUE, (void *)0, vTimerCallback);
+  if (timerHndl==NULL) {
+    for(;;); /* failure! */
+  }
+  if (xTimerStart(timerHndl, 0)!=pdPASS) {
+    for(;;); /* failure! */
+  }
+#endif
+  PL_Init();
+  RTOS_Run();
  // APP_Task(); /* does not return */
 #if 0
   LED1_On();
