@@ -100,6 +100,7 @@ void SW1_OnInterrupt(void)
 #endif
 }
 
+
 /*
 ** ===================================================================
 **     Event       :  FRTOS1_vApplicationStackOverflowHook (module Events)
@@ -143,7 +144,9 @@ void FRTOS1_vApplicationStackOverflowHook(xTaskHandle pxTask, char *pcTaskName)
 void FRTOS1_vApplicationTickHook(void)
 {
   /* Called for every RTOS tick. */
-  /* Write your code here ... */
+#if PL_HAS_TIMER
+  TMR_OnInterrupt();
+#endif
 }
 
 /*
