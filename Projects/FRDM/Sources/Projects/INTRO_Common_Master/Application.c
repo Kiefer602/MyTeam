@@ -18,21 +18,6 @@
 #include "Buzzer.h"
 #include "KeyDebounce.h"
 #include "RTOS.h"
-#include "FRTOS1.h"
-#if configUSE_TRACE_HOOKS
-  #include "RTOSTRC1.h"
-#endif
-#include "timers.h"
-
-#if 1 /* software timers */
-static xTimerHandle timerHndl;
-#define TIMER_PERIOD_MS 50
-
-static void vTimerCallback(xTimerHandle pxTimer) {
-  /* TIMER_PERIOD_MS ms timer */
-  LED2_Neg();
-}
-#endif
 
 /*!
  * \brief Application event handler
@@ -164,23 +149,7 @@ static void APP_Task(void) {
   }
 }
 
-
-
 void APP_Run(void) {
-#if configUSE_TRACE_HOOKS
-  if (RTOSTRC1_uiTraceStart()==0) {
-    for(;;){} /* failed to start trace */
-  }
-#endif
-#if 1 /* create software timer */
-  timerHndl = xTimerCreate("timer0", TIMER_PERIOD_MS/portTICK_RATE_MS, pdTRUE, (void *)0, vTimerCallback);
-  if (timerHndl==NULL) {
-    for(;;); /* failure! */
-  }
-  if (xTimerStart(timerHndl, 0)!=pdPASS) {
-    for(;;); /* failure! */
-  }
-#endif
   PL_Init();
   RTOS_Run();
  // APP_Task(); /* does not return */

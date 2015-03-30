@@ -26,7 +26,7 @@ static void T3(void* param) {
   }
 }
 
-static void AppTask(void* param) {
+static void T1(void* param) {
 //static portTASK_FUNCTION(T1, pvParameters) {
 
   CLS1_SendStr("INFO: Application startup!\r\n", CLS1_GetStdio()->stdOut);
@@ -51,19 +51,17 @@ void RTOS_Run(void) {
 
 void RTOS_Init(void) {
   /*! \todo Add tasks here */
-#if 1
-  if (FRTOS1_xTaskCreate(AppTask, (signed portCHAR *)"App", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL) != pdPASS) {
+#if 0
+  if (FRTOS1_xTaskCreate(T1, (signed portCHAR *)"T1", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL) != pdPASS) {
     for(;;){} /* error */
   }
 #endif
-#if 0
   if (FRTOS1_xTaskCreate(T2, (signed portCHAR *)"T2", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL) != pdPASS) {
     for(;;){} /* error */
   }
   if (FRTOS1_xTaskCreate(T3, (signed portCHAR *)"T3", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL) != pdPASS) {
     for(;;){} /* error */
   }
-#endif
 }
 
 void RTOS_Deinit(void) {
