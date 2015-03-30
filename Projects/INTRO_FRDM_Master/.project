@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>FRDM</name>
+	<name>INTRO_FRDM_Master</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -147,10 +147,4 @@
 			<location>C:/Freescale/KDS_2.0.0/eclipse/ProcessorExpert/lib/Kinetis/pdd/inc/USB_PDD.h</location>
 		</link>
 	</linkedResources>
-	<variableList>
-		<variable>
-			<name>copy_PARENT</name>
-			<value>$%7BPARENT-2-PROJECT_LOC%7D/Desktop/Infotroniks/Git/myteam/Projects</value>
-		</variable>
-	</variableList>
 </projectDescription>
