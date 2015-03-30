@@ -39,13 +39,21 @@
   /*!< Set to 1 to enable joystick shield support, 0 otherwise */
 #define PL_HAS_TRIGGER        (1)
   /*!< Set to 1 for trigger enabled, 0 otherwise */
-#define PL_HAS_SHELL          (0)
+#define PL_HAS_SHELL          (1)
   /*!< Set to 1 for shell enabled, 0 otherwise */
 #define PL_HAS_BUZZER         (1 && PL_IS_ROBO)
   /*!< Set to 1 for buzzer enabled, 0 otherwise */
 #define PL_HAS_DEBOUNCE       (1)
   /*!< Set to 1 for debouncing enabled, 0 otherwise */
-#define PL_HAS_RTOS			  (1)
+#define PL_HAS_RTOS           (1)
+  /*!< Set to 1 for RTOS enabled, 0 otherwise */
+#define PL_HAS_BLUETOOTH      (1 && PL_IS_ROBO)
+  /*!< Set to 1 for Bluetooth enabled, 0 otherwise */
+#define PL_HAS_USB_CDC        (0 && PL_HAS_SHELL)
+  /*!< Set to 1 for USB CDC enabled, 0 otherwise */
+#define PL_HAS_SHELL_QUEUE    (0 && PL_HAS_SHELL)
+  /*!< Set to 1 for shell queues enabled, 0 otherwise */
+
 
 /* if keys are using interrupts or are polled */
 #if PL_IS_FRDM

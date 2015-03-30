@@ -20,6 +20,9 @@
 #include "Trigger.h"
 #include "Buzzer.h"
 #include "Debounce.h"
+#include "RTOS.h"
+#include "Shell.h"
+#include "ShellQueue.h"
 
 void PL_Init(void) {
 #if PL_HAS_LED
@@ -46,9 +49,27 @@ void PL_Init(void) {
 #if PL_HAS_DEBOUNCE
   DBNC_Init();
 #endif
+#if PL_HAS_RTOS
+  RTOS_Init();
+#endif
+#if PL_HAS_SHELL
+  SHELL_Init();
+#endif
+#if PL_HAS_SHELL_QUEUE
+  SQUEUE_Init();
+#endif
 }
 
 void PL_Deinit(void) {
+#if PL_HAS_SHELL_QUEUE
+  SQUEUE_Deinit();
+#endif
+#if PL_HAS_SHELL
+  SHELL_Deinit();
+#endif
+#if PL_HAS_RTOS
+  RTOS_Deinit();
+#endif
 #if PL_HAS_DEBOUNCE
   DBNC_Deinit();
 #endif

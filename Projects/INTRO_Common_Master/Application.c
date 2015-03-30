@@ -17,12 +17,13 @@
 #include "Keys.h"
 #include "Buzzer.h"
 #include "KeyDebounce.h"
+#include "RTOS.h"
 
 /*!
  * \brief Application event handler
  * \param event Event to be handled
  */
-static void APP_HandleEvents(EVNT_Handle event) {
+void APP_HandleEvents(EVNT_Handle event) {
   switch(event) {
     case EVNT_STARTUP:
       LED1_On();
@@ -116,14 +117,9 @@ static void APP_HandleEvents(EVNT_Handle event) {
       CLS1_SendStr("SW7 release\r\n", CLS1_GetStdio()->stdOut);
       break;
 #endif
-#if PL_HAS_RTOS
-      RTOS_RUN();
-#endif
     default:
       break;
-
   }
-
 }
 
 /*!
@@ -155,7 +151,8 @@ static void APP_Task(void) {
 
 void APP_Run(void) {
   PL_Init();
-  APP_Task(); /* does not return */
+  RTOS_Run();
+ // APP_Task(); /* does not return */
 #if 0
   LED1_On();
   LED2_On();
