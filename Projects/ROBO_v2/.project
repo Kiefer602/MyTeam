@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>robo_v2</name>
+	<name>INTRO_Robo_Master</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -34,7 +34,7 @@
 		<link>
 			<name>Sources/INTRO_Common_Master</name>
 			<type>2</type>
-			<location>C:/Users/James/Documents/Intro/MyTeam/Projects/INTRO_Common_Master</location>
+			<locationURI>PARENT-1-PROJECT_LOC/INTRO_Common_Master</locationURI>
 		</link>
 		<link>
 			<name>Static_Code/IO_Map/MK22F12.h</name>
@@ -197,14 +197,4 @@
 			<location>C:/Freescale/KDS_2.0.0/eclipse/ProcessorExpert/lib/Kinetis/pdd/inc/WDOG_PDD.h</location>
 		</link>
 	</linkedResources>
-	<variableList>
-		<variable>
-			<name>copy_PARENT</name>
-			<value>$%7BPARENT-2-PROJECT_LOC%7D/Documents/Intro/MyTeam/Projects</value>
-		</variable>
-		<variable>
-			<name>copy_PARENT1</name>
-			<value>$%7BPARENT-1-copy_PARENT%7D/Documents/Intro/MyTeam/Projects</value>
-		</variable>
-	</variableList>
 </projectDescription>
