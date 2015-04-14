@@ -49,11 +49,12 @@
   /*!< Set to 1 for RTOS enabled, 0 otherwise */
 #define PL_HAS_BLUETOOTH      (1 && PL_IS_ROBO)
   /*!< Set to 1 for Bluetooth enabled, 0 otherwise */
-#define PL_HAS_USB_CDC        (0 && PL_HAS_SHELL)
+#define PL_HAS_USB_CDC        (1 && PL_HAS_SHELL)
   /*!< Set to 1 for USB CDC enabled, 0 otherwise */
 #define PL_HAS_SHELL_QUEUE    (0 && PL_HAS_SHELL)
   /*!< Set to 1 for shell queues enabled, 0 otherwise */
-
+#define PL_HAS_SEMAPHORE      (1 && PL_HAS_RTOS)
+  /*!< Set to 1 for semaphores enabled, 0 otherwise */
 
 /* if keys are using interrupts or are polled */
 #if PL_IS_FRDM

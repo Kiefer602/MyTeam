@@ -23,6 +23,7 @@
 #include "RTOS.h"
 #include "Shell.h"
 #include "ShellQueue.h"
+#include "Sem.h"
 
 void PL_Init(void) {
 #if PL_HAS_LED
@@ -58,9 +59,15 @@ void PL_Init(void) {
 #if PL_HAS_SHELL_QUEUE
   SQUEUE_Init();
 #endif
+#if PL_HAS_SEMAPHORE
+  SEM_Init();
+#endif
 }
 
 void PL_Deinit(void) {
+#if PL_HAS_SEMAPHORE
+  SEM_Deinit();
+#endif
 #if PL_HAS_SHELL_QUEUE
   SQUEUE_Deinit();
 #endif

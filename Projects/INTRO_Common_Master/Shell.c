@@ -170,6 +170,7 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #if PL_HAS_SHELL_QUEUE
     {
       /*! \todo Handle shell queue */
+#if SQUEUE_SINGLE_CHAR
       unsigned char ch;
 
       while((ch=SQUEUE_ReceiveChar()) && ch!='\0') {
@@ -177,7 +178,21 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #if PL_HAS_BLUETOOTH
         BT_stdio.stdOut(ch); /* copy on Bluetooth */
 #endif
+#if PL_HAS_USB_CDC
+        CDC_stdio.stdOut(ch); /* copy on USB CDC */
+#endif
       }
+#else
+      {
+        const unsigned char *msg;
+
+        msg = SQUEUE_ReceiveMessage();
+        if (msg!=NULL) {
+          CLS11_SendStr(msg, CLS1_GetStdio()->stdOut);
+          FRTOS1_vPortFree((void*)msg);
+        }
+      }
+#endif
     }
 #endif
     FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
