@@ -24,7 +24,9 @@
 #endif
 #include "timers.h"
 
-#if 1 /* software timers */
+#define USE_SW_TIMERS 0
+
+#if USE_SW_TIMERS /* software timers */
 static xTimerHandle timerHndl;
 #define TIMER_PERIOD_MS 50
 
@@ -172,7 +174,7 @@ void APP_Run(void) {
     for(;;){} /* failed to start trace */
   }
 #endif
-#if 1 /* create software timer */
+#if USE_SW_TIMERS /* create software timer */
   timerHndl = xTimerCreate("timer0", TIMER_PERIOD_MS/portTICK_RATE_MS, pdTRUE, (void *)0, vTimerCallback);
   if (timerHndl==NULL) {
     for(;;); /* failure! */

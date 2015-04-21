@@ -24,6 +24,8 @@
 #include "Shell.h"
 #include "ShellQueue.h"
 #include "Sem.h"
+#include "Reflectance.h"
+#include "Motor.h"
 
 void PL_Init(void) {
 #if PL_HAS_LED
@@ -62,9 +64,21 @@ void PL_Init(void) {
 #if PL_HAS_SEMAPHORE
   SEM_Init();
 #endif
+#if PL_HAS_LINE_SENSOR
+  REF_Init();
+#endif
+#if PL_HAS_MOTOR
+  MOT_Init();
+#endif
 }
 
 void PL_Deinit(void) {
+#if PL_HAS_MOTOR
+  MOT_Deinit();
+#endif
+#if PL_HAS_LINE_SENSOR
+  REF_Deinit();
+#endif
 #if PL_HAS_SEMAPHORE
   SEM_Deinit();
 #endif

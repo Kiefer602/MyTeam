@@ -49,11 +49,19 @@
   /*!< Set to 1 for RTOS enabled, 0 otherwise */
 #define PL_HAS_BLUETOOTH      (1 && PL_IS_ROBO)
   /*!< Set to 1 for Bluetooth enabled, 0 otherwise */
-#define PL_HAS_USB_CDC        (0 && PL_HAS_SHELL)
+#define PL_HAS_USB_CDC        (1 && PL_HAS_SHELL)
   /*!< Set to 1 for USB CDC enabled, 0 otherwise */
-#define PL_HAS_SHELL_QUEUE    (0 && PL_HAS_SHELL)
+#define PL_HAS_SHELL_QUEUE    (1 && PL_HAS_SHELL)
   /*!< Set to 1 for shell queues enabled, 0 otherwise */
-
+#define PL_SQUEUE_SINGLE_CHAR (1 && PL_HAS_SHELL_QUEUE)
+  /*!< 1: single character queue, 0: string queue with limited size */
+#define PL_HAS_SEMAPHORE      (1 && PL_HAS_RTOS)
+  /*!< Set to 1 for semaphores enabled, 0 otherwise */
+#define PL_HAS_LINE_SENSOR    (1 && PL_IS_ROBO)
+  /*!< Set to 1 for line sensor enabled, 0 otherwise */
+#define PL_HAS_MOTOR          (1 && PL_IS_ROBO)
+  /*!< Set to 1 for motors enabled, 0 otherwise */
+#define PL_HAS_CONFIG_NVM     (0)
 
 /* if keys are using interrupts or are polled */
 #if PL_IS_FRDM
