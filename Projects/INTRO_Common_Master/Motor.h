@@ -39,6 +39,13 @@ typedef enum {
 MOT_MotorDevice *MOT_GetMotorHandle(MOT_MotorSide side);
 
 /*!
+ * \brief Changes the speed of a motor, in the range of -100% (backward) to +100% (forward).
+ * \param motor Motor handle.
+ * \param relPercent Relative speed percentage to change.
+ */
+void MOT_ChangeSpeedPercent(MOT_MotorDevice *motor, MOT_SpeedPercent relPercent);
+
+/*!
  * \brief Sets the speed of a motor, in the range of -100% (backward) to +100% (forward).
  * \param motor Motor handle.
  * \param percent Motor speed value, from -100 (full speed backward) to +100 (full speed forward).

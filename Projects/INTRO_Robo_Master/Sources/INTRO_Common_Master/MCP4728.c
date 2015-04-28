@@ -28,11 +28,7 @@
 #define MCP4728_GC_WAKEUP           0x09 /* general call wake-up command */
 #define MCP4728_GC_READ             0x0C /* general call read address bits command */
 
-#if !PL_IS_INTRO_ZUMO_K22_V2
-  #define MCP4728_I2C_ADDRESS 0x60 /* default address of device (4728UN) */
-#else
-  #define MCP4728_I2C_ADDRESS 0x61 /* default address of device (4728A1) */
-#endif
+#define MCP4728_I2C_ADDRESS 0x61 /* default address of device (4728A1), for lab Zumo */
 
 bool MCP4728_IsBusy(void) {
 #if PL_HAS_MCP4728_RDY
