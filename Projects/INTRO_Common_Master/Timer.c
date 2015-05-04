@@ -18,6 +18,9 @@
 #if PL_HAS_TRIGGER
   #include "Trigger.h"
 #endif
+#if PL_HAS_MOTOR_TACHO
+  #include "Tacho.h"
+#endif
 
 void TMR_OnInterrupt(void) {
   /* this one gets called from an interrupt!!!! */
@@ -35,6 +38,9 @@ void TMR_OnInterrupt(void) {
 #endif
     cntr = 0;
   }
+#if PL_HAS_MOTOR_TACHO
+  TACHO_Sample();
+#endif
 }
 
 void TMR_Init(void) {

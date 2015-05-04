@@ -26,6 +26,12 @@
 #include "Sem.h"
 #include "Reflectance.h"
 #include "Motor.h"
+#include "Tacho.h"
+#include "PID.h"
+#include "Drive.h"
+#include "Ultrasonic.h"
+#include "Accel.h"
+#include "RNet_App.h"
 
 void PL_Init(void) {
 #if PL_HAS_LED
@@ -70,9 +76,45 @@ void PL_Init(void) {
 #if PL_HAS_MOTOR
   MOT_Init();
 #endif
+#if PL_HAS_MOTOR_TACHO
+  TACHO_Init();
+#endif
+#if PL_HAS_PID
+  PID_Init();
+#endif
+#if PL_HAS_DRIVE
+  DRV_Init();
+#endif
+#if PL_HAS_ULTRASONIC
+  US_Init();
+#endif
+#if PL_HAS_ACCEL
+  ACCEL_Init();
+#endif
+#if PL_HAS_RADIO
+  RNETA_Init();
+#endif
 }
 
 void PL_Deinit(void) {
+#if PL_HAS_RADIO
+  RNETA_Deinit();
+#endif
+#if PL_HAS_ACCEL
+  ACCEL_Deinit();
+#endif
+#if PL_HAS_ULTRASONIC
+  US_Deinit();
+#endif
+#if PL_HAS_DRIVE
+  DRV_Deinit();
+#endif
+#if PL_HAS_PID
+  PID_Deinit();
+#endif
+#if PL_HAS_MOTOR_TACHO
+  TACHO_Deinit();
+#endif
 #if PL_HAS_MOTOR
   MOT_Deinit();
 #endif

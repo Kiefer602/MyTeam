@@ -13,7 +13,17 @@
 #include "Keys.h"
 #include "Mealy.h"
 #include "Application.h"
+#include "Reflectance.h"
+#include "Motor.h"
+#include "Shell.h"
 
+static volatile bool SW1Pressed = FALSE;
+
+void RTOS_ButtonSW1Press(void) {
+  SW1Pressed = TRUE;
+}
+
+#if 0
 static void T2(void* param) {
   for(;;) {
     LED1_Neg();
@@ -25,11 +35,10 @@ static void T3(void* param) {
     LED2_Neg();
   }
 }
+#endif
 
 static void AppTask(void* param) {
-//static portTASK_FUNCTION(T1, pvParameters) {
-
-  CLS1_SendStr("INFO: Application startup!\r\n", CLS1_GetStdio()->stdOut);
+  SHELL_SendString("INFO: Application startup!\r\n");
   EVNT_SetEvent(EVNT_STARTUP); /* set startup event */
   for(;;) {
     EVNT_HandleEvent(APP_HandleEvents);
@@ -40,6 +49,25 @@ static void AppTask(void* param) {
     MEALY_Step();
 #endif
     LED1_Neg();
+#if PL_IS_ROBO
+    if (SW1Pressed) {
+      SW1Pressed = FALSE;
+      if (MOT_GetVal(MOT_GetMotorHandle(MOT_MOTOR_LEFT))!=0xFFFF || MOT_GetVal(MOT_GetMotorHandle(MOT_MOTOR_RIGHT))!=0xFFFF) {
+        MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), 0);
+        MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), 0);
+      } else if (REF_IsReady()) {
+        MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), 10);
+        MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), 10);
+      }
+    }
+    if (REF_IsReady()) {
+      if (REF_GetLineValue()!=3500) { /* 3500 is (7*1000)/2 ==> full black middle line */
+        /* turn off motors */
+        MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), 0);
+        MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), 0);
+      }
+    }
+#endif
     FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
   }
 }

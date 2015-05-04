@@ -18,11 +18,11 @@
 #include "FRTOS1.h"
 
   /*! \todo Set appropriate values for NOF_ROUND_PULSE, TACHO_SAMPLE_PERIOD_MS and NOF_HISTORY */
-#define NOF_ROUND_PULSE      (?)
+#define NOF_ROUND_PULSE      (12*75)
   /*!< \todo number of pulses per round, given by encoder hardware, and we are detecting 4 steps for each period. Useful to calculate revolutions per time unit. */
-#define TACHO_SAMPLE_PERIOD_MS (?)
+#define TACHO_SAMPLE_PERIOD_MS (5)
   /*!< \todo speed sample period in ms. Make sure that speed is sampled at the given rate. */
-#define NOF_HISTORY (?)
+#define NOF_HISTORY (16U+1U)
   /*!< number of samples for speed calculation (>0):the more, the better, but the slower. */
 
 static volatile uint16_t TACHO_LeftPosHistory[NOF_HISTORY], TACHO_RightPosHistory[NOF_HISTORY];
@@ -117,7 +117,7 @@ void TACHO_Sample(void) {
  * \param io I/O channel to use for printing status
  */
 static void TACHO_PrintStatus(const CLS1_StdIOType *io) {
-  TACHO_CalcSpeed(); /*! \todo only temporary until this is done periodically */
+  //TACHO_CalcSpeed(); /*! \todo only temporary until this is done periodically */
   CLS1_SendStatusStr((unsigned char*)"Tacho", (unsigned char*)"\r\n", io->stdOut);
   CLS1_SendStatusStr((unsigned char*)"  L speed", (unsigned char*)"", io->stdOut);
   CLS1_SendNum32s(TACHO_GetSpeed(TRUE), io->stdOut);

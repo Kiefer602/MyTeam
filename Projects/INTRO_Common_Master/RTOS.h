@@ -18,4 +18,9 @@ void RTOS_Init(void);
 /*! \brief De-Initializes the RTOS module */
 void RTOS_Deinit(void);
 
+/*!
+ * \brief Short button press
+ */
+void RTOS_ButtonSW1Press(void);
+
 #endif /* RTOS_H_ */

@@ -12,7 +12,7 @@
 #include "Pid.h"
 #include "Tacho.h"
 #include "Motor.h"
-#if configUSE_TRACE_HOOKS
+#if PL_HAS_RTOS_TRACE
   #include "RTOSTRC1.h"
 #endif
 
@@ -31,17 +31,17 @@ void DRV_SetSpeed(int32_t left, int32_t right) {
 static portTASK_FUNCTION(DriveTask, pvParameters) {
   (void)pvParameters; /* parameter not used */
   bool prevOn;
-#if configUSE_TRACE_HOOKS
+#if PL_HAS_RTOS_TRACE
   traceLabel usrEventChannel;
   int32_t currSpeed, prevSpeed, prevSpeedLeft;
 #endif
 
   prevOn = DRV_SpeedOn;
-#if configUSE_TRACE_HOOKS
+#if PL_HAS_RTOS_TRACE
   usrEventChannel = RTOSTRC1_xTraceOpenLabel("Speed");
   RTOSTRC1_vTracePrintF(usrEventChannel, "%d", 0); /* initial value */
-  RTOSTRC1_vTraceStop();
-  RTOSTRC1_vTraceClear();
+  //RTOSTRC1_vTraceStop();
+  //RTOSTRC1_vTraceClear();
   prevSpeedLeft = 0;
 #endif
   for(;;) {
@@ -52,7 +52,7 @@ static portTASK_FUNCTION(DriveTask, pvParameters) {
       MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), 0);
       PID_Start(); /* reset values */
     } else if (DRV_SpeedOn) {
-#if configUSE_TRACE_HOOKS
+#if PL_HAS_RTOS_TRACE
       if (DRV_SpeedLeft!=prevSpeedLeft) {
         RTOSTRC1_uiTraceStart();
         RTOSTRC1_vTracePrintF(usrEventChannel, "%d", currSpeed);

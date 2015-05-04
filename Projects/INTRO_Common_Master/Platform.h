@@ -31,7 +31,7 @@
   /*!< Set to 1 to enable key interrupt support, 0 otherwise */
 #define PL_HAS_KBI_NMI        (1 && PL_IS_FRDM && PL_HAS_JOYSTICK)
   /*!< Set to 1 for special case on NMI/PTA pin on FRDM board, 0 otherwise */
-#define PL_HAS_MEALY          (1 && PL_NOF_LEDS>=1 && PL_NOF_KEYS>=1)
+#define PL_HAS_MEALY          (0 && PL_NOF_LEDS>=1 && PL_NOF_KEYS>=1)
   /*!< Set to 1 to enable Mealy sequential state machine, 0 otherwise */
 #define PL_HAS_RESET_KEY      (0 && PL_IS_FRDM && PL_HAS_KEYS)
   /*!< Set to 1 to use reset switch on FRDM as button, 0 otherwise */
@@ -61,7 +61,28 @@
   /*!< Set to 1 for line sensor enabled, 0 otherwise */
 #define PL_HAS_MOTOR          (1 && PL_IS_ROBO)
   /*!< Set to 1 for motors enabled, 0 otherwise */
-#define PL_HAS_CONFIG_NVM     (0)
+#define PL_HAS_CONFIG_NVM     (1)
+  /*!< Set to 1 for NVMC enabled, 0 otherwise */
+#define PL_HAS_QUADRATURE        (1 && PL_HAS_MOTOR)
+  /*!< Set to 1 for quadrature enabled, 0 otherwise */
+#define PL_HAS_MCP4728        (1 && PL_HAS_QUADRATURE)
+  /*!< Set to 1 for MCP4728 enabled, 0 otherwise */
+#define PL_HAS_QUAD_CALIBRATION  (1 && PL_HAS_MCP4728)
+  /*!< Set to 1 for quadrature calibration enabled, 0 otherwise */
+#define PL_HAS_MOTOR_TACHO    (1 && PL_HAS_QUADRATURE)
+  /*!< Set to 1 for tacho/speed estimation enabled, 0 otherwise */
+#define PL_HAS_PID            (1 && PL_HAS_MOTOR)
+  /*!< Set to 1 for PID enabled, 0 otherwise */
+#define PL_HAS_DRIVE          (1 && PL_HAS_PID)
+  /*!< Set to 1 for drive module enabled, 0 otherwise */
+#define PL_HAS_RTOS_TRACE     (1 && PL_HAS_RTOS && configUSE_TRACE_HOOKS)
+  /*! Set to 1 for Percepio Trace enabled, 0 otherwise */
+#define PL_HAS_ULTRASONIC     (1 && PL_IS_ROBO)
+  /*! Set to 1 for ultrasonic sensor enabled, 0 otherwise */
+#define PL_HAS_ACCEL          (1)
+  /*! Set to 1 for accelerometer sensor enabled, 0 otherwise */
+#define PL_HAS_RADIO          (1)
+  /*! Set to 1 for radio transceiver enabled, 0 otherwise */
 
 /* if keys are using interrupts or are polled */
 #if PL_IS_FRDM
@@ -85,13 +106,13 @@
   #else
     #define PL_NOF_LEDS       (3)
        /*!< FRDM board has up to 3 LEDs (RGB) */
-#if PL_HAS_RESET_KEY
-    #define PL_NOF_KEYS       (1)
-       /*!< FRDM board with using the reset button */
-#else
-    #define PL_NOF_KEYS       (0)
-       /*!< FRDM board has no keys without joystick shield */
-#endif
+    #if PL_HAS_RESET_KEY
+      #define PL_NOF_KEYS       (1)
+        /*!< FRDM board with using the reset button */
+    #else
+      #define PL_NOF_KEYS       (0)
+        /*!< FRDM board has no keys without joystick shield */
+    #endif
   #endif
 #elif PL_IS_ROBO
   #define PL_NOF_LEDS       (2)

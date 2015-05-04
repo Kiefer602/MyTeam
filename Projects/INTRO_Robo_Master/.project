@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Robo_V3</name>
+	<name>INTRO_Robo_Master</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -31,6 +31,11 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
 	<linkedResources>
+		<link>
+			<name>Sources/INTRO_Common_Master</name>
+			<type>2</type>
+			<locationURI>PARENT-1-PROJECT_LOC/INTRO_Common_Master</locationURI>
+		</link>
 		<link>
 			<name>Static_Code/IO_Map/MK22F12.h</name>
 			<type>1</type>
