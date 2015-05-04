@@ -46,6 +46,9 @@
 #if PL_HAS_DRIVE
   #include "Drive.h"
 #endif
+#if PL_HAS_ULTRASONIC
+	#include "Ultrasonic.h"
+#endif
 
 /* forward declaration */
 static uint8_t SHELL_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_StdIOType *io);
@@ -92,6 +95,9 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 #endif
 #if PL_HAS_DRIVE
   DRV_ParseCommand,
+#endif
+#if PL_HAS_ULTRASONIC
+  US_ParseCommand,
 #endif
   NULL /* Sentinel */
 };
