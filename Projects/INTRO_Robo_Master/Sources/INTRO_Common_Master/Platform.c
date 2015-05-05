@@ -87,6 +87,8 @@ void PL_Init(void) {
 #endif
 #if PL_HAS_ULTRASONIC
   US_Init();
+  US_EventEchoOverflow();
+  US_EventEchoCapture();
 #endif
 #if PL_HAS_ACCEL
   ACCEL_Init();
