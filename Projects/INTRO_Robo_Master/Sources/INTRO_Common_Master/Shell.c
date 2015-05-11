@@ -46,8 +46,19 @@
 #if PL_HAS_DRIVE
   #include "Drive.h"
 #endif
+#if PL_HAS_ACCEL
+  #include "MMA1.h"
+#endif
 #if PL_HAS_ULTRASONIC
-	#include "Ultrasonic.h"
+  #include "Ultrasonic.h"
+#endif
+#if PL_HAS_RADIO
+  #include "RApp.h"
+  #include "RNet_App.h"
+  #include "RNetConf.h"
+#endif
+#if RNET_CONFIG_REMOTE_STDIO
+  #include "RStdIO.h"
 #endif
 
 /* forward declaration */
@@ -98,6 +109,17 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 #endif
 #if PL_HAS_ULTRASONIC
   US_ParseCommand,
+#endif
+#if PL_HAS_ACCEL
+#if MMA1_PARSE_COMMAND_ENABLED
+  MMA1_ParseCommand,
+#endif
+#endif
+#if PL_HAS_RADIO
+#if RNET1_PARSE_COMMAND_ENABLED
+  RNET1_ParseCommand,
+#endif
+  RNETA_ParseCommand,
 #endif
   NULL /* Sentinel */
 };

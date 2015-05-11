@@ -40,6 +40,12 @@ void REF_CalibrateStartStop(void);
 uint16_t REF_GetLineValue(void);
 
 /*!
+ * \brief Determines if the line sensor is calibrated or not
+ * \return TRUE if calibrated.
+ */
+bool REF_IsReady(void);
+
+/*!
  * \brief Driver Deinitialization.
  */
 void REF_Deinit(void);

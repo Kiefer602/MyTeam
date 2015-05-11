@@ -36,6 +36,7 @@ void US_EventEchoOverflow(LDD_TUserData *UserDataPtr) {
   US_DeviceType *ptr = (US_DeviceType*)UserDataPtr;
   
   ptr->state = ECHO_OVERFLOW;
+  TU_US_Disable(usDevice.echoDevice);
 }
 
 void US_EventEchoCapture(LDD_TUserData *UserDataPtr) {
@@ -47,6 +48,7 @@ void US_EventEchoCapture(LDD_TUserData *UserDataPtr) {
   } else if (ptr->state==ECHO_MEASURE) { /* 2nd edge, this is the falling edge: use measurement */
     (void)TU_US_GetCaptureValue(ptr->echoDevice, 0, &ptr->capture);
     ptr->state = ECHO_FINISHED;
+    TU_US_Disable(usDevice.echoDevice);
   }
 }
 
@@ -72,6 +74,7 @@ uint16_t US_Measure_us(void) {
   TRIG_SetVal(usDevice.trigDevice);
   WAIT1_Waitus(10);
   usDevice.state = ECHO_TRIGGERED;
+  TU_US_Enable(usDevice.echoDevice);
   TRIG_ClrVal(usDevice.trigDevice);
   timeout = 30;
   while(usDevice.state!=ECHO_FINISHED && timeout>0) {

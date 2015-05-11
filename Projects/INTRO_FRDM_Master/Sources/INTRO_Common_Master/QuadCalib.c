@@ -17,12 +17,6 @@
 #include "Q4CLeft.h"
 #include "Q4CRight.h"
 #include "Motor.h"
-#if PL_HAS_DRIVE
-  #include "Drive.h"
-#endif
-#if PL_HAS_WATCHDOG
-  #include "Watchdog.h"
-#endif
 
 typedef struct {
   uint32_t lowTicks, highTicks;

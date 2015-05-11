@@ -83,6 +83,7 @@
   /*! Set to 1 for accelerometer sensor enabled, 0 otherwise */
 #define PL_HAS_RADIO          (1)
   /*! Set to 1 for radio transceiver enabled, 0 otherwise */
+#define PL_HAS_REMOTE         (0)
 
 /* if keys are using interrupts or are polled */
 #if PL_IS_FRDM

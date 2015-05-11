@@ -40,8 +40,6 @@
 #include "BitIoLdd3.h"
 #include "LedBit2.h"
 #include "BitIoLdd4.h"
-#include "LedBit3.h"
-#include "BitIoLdd5.h"
 #include "CS1.h"
 #include "HF1.h"
 #include "CLS1.h"
@@ -63,13 +61,25 @@
 #include "SW7.h"
 #include "ExtIntLdd5.h"
 #include "FRTOS1.h"
-#include "RTOSTRC1.h"
 #include "RTOSCNTRLDD1.h"
 #include "USB1.h"
 #include "USB0.h"
 #include "CDC1.h"
 #include "Tx1.h"
 #include "Rx1.h"
+#include "IFsh1.h"
+#include "IntFlashLdd1.h"
+#include "RNET1.h"
+#include "RF1.h"
+#include "CE1.h"
+#include "BitIoLdd11.h"
+#include "CSN1.h"
+#include "BitIoLdd12.h"
+#include "SM1.h"
+#include "SMasterLdd1.h"
+#include "I2C1.h"
+#include "GI2C1.h"
+#include "MMA1.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -246,6 +256,19 @@ void RTOSTRC1_OnTraceWrap(void);
 **     Description :
 **         Called for trace ring buffer wrap around. This gives the
 **         application a chance to dump the trace buffer.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void GI2C1_OnError(void);
+/*
+** ===================================================================
+**     Event       :  GI2C1_OnError (module Events)
+**
+**     Component   :  GI2C1 [GenericI2C]
+**     Description :
+**         Event called in case of error condition
 **     Parameters  : None
 **     Returns     : Nothing
 ** ===================================================================

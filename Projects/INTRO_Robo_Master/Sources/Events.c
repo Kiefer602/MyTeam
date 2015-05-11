@@ -39,6 +39,9 @@ extern "C" {
 #include "Platform.h"
 #include "Timer.h"
 #include "Keys.h"
+#if PL_HAS_ULTRASONIC
+  #include "Ultrasonic.h"
+#endif
 
 /*
 ** ===================================================================
@@ -342,7 +345,11 @@ void RNET1_OnRadioEvent(RNET1_RadioEvent event)
 /* ===================================================================*/
 void TU_US_OnCounterRestart(LDD_TUserData *UserDataPtr)
 {
-  /* Write your code here ... */
+#if PL_HAS_ULTRASONIC
+  US_EventEchoOverflow(UserDataPtr);
+#else
+  (void)UserDataPtr; /* unused */
+#endif
 }
 
 /*
@@ -366,7 +373,11 @@ void TU_US_OnCounterRestart(LDD_TUserData *UserDataPtr)
 /* ===================================================================*/
 void TU_US_OnChannel0(LDD_TUserData *UserDataPtr)
 {
-  /* Write your code here ... */
+#if PL_HAS_ULTRASONIC
+  US_EventEchoCapture(UserDataPtr);
+#else
+  (void)UserDataPtr; /* unused */
+#endif
 }
 
 /* END Events */

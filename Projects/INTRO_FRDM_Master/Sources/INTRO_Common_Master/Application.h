@@ -13,6 +13,12 @@
 #include "Event.h"
 
 /*!
+ * \brief Prints a debugging string to the shell
+ * \param str String to be printed.
+ */
+void APP_DebugPrint(unsigned char *str);
+
+/*!
  * \brief Application event handler.
  * \param event Event to be handled.
  */

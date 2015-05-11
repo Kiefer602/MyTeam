@@ -91,7 +91,7 @@ static void DRV_PrintStatus(const CLS1_StdIOType *io) {
 static void DRV_PrintHelp(const CLS1_StdIOType *io) {
   CLS1_SendHelpStr((unsigned char*)"drive", (unsigned char*)"Group of drive commands\r\n", io->stdOut);
   CLS1_SendHelpStr((unsigned char*)"  help|status", (unsigned char*)"Shows help or status\r\n", io->stdOut);
-  CLS1_SendHelpStr((unsigned char*)"  speed (on|off)", (unsigned char*)"Turns speed pid on or ff\r\n", io->stdOut);
+  CLS1_SendHelpStr((unsigned char*)"  speed (on|off)", (unsigned char*)"Turns speed pid on or off\r\n", io->stdOut);
   CLS1_SendHelpStr((unsigned char*)"  speed (L|R) <value>", (unsigned char*)"Sets speed value\r\n", io->stdOut);
 }
 

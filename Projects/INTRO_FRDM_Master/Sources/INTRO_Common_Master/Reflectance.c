@@ -36,8 +36,9 @@
 #define REF_MIN_NOISE_VAL     0x40   /* values below this are not added to the weighted sum */
 #define REF_USE_WHITE_LINE    0  /* if set to 1, then the robot is using a white (on black) line, otherwise a black (on white) line */
 
-#define REF_START_STOP_CALIB  1 /* start/stop calibration commands */
-#define REF_MEASURE_TIMEOUT   1 /* use timeout for measurement */
+#define REF_START_STOP_CALIB      1 /* start/stop calibration commands */
+#define REF_MEASURE_TIMEOUT   		1 /* use timeout for measurement */
+#define REF_STORE_CALIB_IN_FLASH  1 /* if storing calibration data in FLASH */
 
 #if REF_MEASURE_TIMEOUT
   #define REF_SENSOR_TIMEOUT_US  1500  /* after this time, consider no reflection (black). Must be smaller than the timeout period of the RefCnt timer! */
@@ -404,8 +405,23 @@ static void REF_StateMachine(void) {
 
   switch (refState) {
     case REF_STATE_INIT:
+#if REF_STORE_CALIB_IN_FLASH
+      {
+        SensorCalibT *SensorCalibMinMaxPtr;
+
+        SensorCalibMinMaxPtr = (SensorCalibT*)NVMC_GetReflectanceData();
+        if (SensorCalibMinMaxPtr!=NULL) { /* use calibration data from FLASH */
+          SensorCalibMinMax = *SensorCalibMinMaxPtr; /* struct copy */
+          refState = REF_STATE_READY;
+        } else {
+          SHELL_SendString((unsigned char*)"INFO: No calibration data present.\r\n");
+          refState = REF_STATE_NOT_CALIBRATED;
+        }
+      }
+#else
       SHELL_SendString((unsigned char*)"INFO: No calibration data present.\r\n");
       refState = REF_STATE_NOT_CALIBRATED;
+#endif
       break;
       
     case REF_STATE_NOT_CALIBRATED:
@@ -441,6 +457,13 @@ static void REF_StateMachine(void) {
       break;
     
     case REF_STATE_STOP_CALIBRATION:
+#if REF_STORE_CALIB_IN_FLASH
+      if (NVMC_SaveReflectanceData((void*)&SensorCalibMinMax, sizeof(SensorCalibMinMax))!=ERR_OK) {
+        SHELL_SendString((unsigned char*)"FAILED saving calibration.\r\n");
+      } else {
+        SHELL_SendString((unsigned char*)"Stored calibration data in FALSH.\r\n");
+      }
+#endif
       SHELL_SendString((unsigned char*)"...stopping calibration.\r\n");
       refState = REF_STATE_READY;
       break;
@@ -454,6 +477,10 @@ static void REF_StateMachine(void) {
 #endif
       break;
   } /* switch */
+}
+
+bool REF_IsReady(void) {
+  return refState==REF_STATE_READY;
 }
 
 static portTASK_FUNCTION(ReflTask, pvParameters) {

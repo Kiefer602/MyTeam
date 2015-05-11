@@ -27,6 +27,39 @@
 #if PL_HAS_MOTOR
   #include "Motor.h"
 #endif
+#if PL_HAS_MCP4728
+  #include "MCP4728.h"
+#endif
+#if PL_HAS_QUAD_CALIBRATION
+  #include "QuadCalib.h"
+#endif
+#if PL_HAS_QUADRATURE
+  #include "Q4CLeft.h"
+  #include "Q4CRight.h"
+#endif
+#if PL_HAS_MOTOR_TACHO
+  #include "Tacho.h"
+#endif
+#if PL_HAS_PID
+  #include "PID.h"
+#endif
+#if PL_HAS_DRIVE
+  #include "Drive.h"
+#endif
+#if PL_HAS_ACCEL
+  #include "MMA1.h"
+#endif
+#if PL_HAS_ULTRASONIC
+  #include "Ultrasonic.h"
+#endif
+#if PL_HAS_RADIO
+  #include "RApp.h"
+  #include "RNet_App.h"
+  #include "RNetConf.h"
+#endif
+#if RNET_CONFIG_REMOTE_STDIO
+  #include "RStdIO.h"
+#endif
 
 /* forward declaration */
 static uint8_t SHELL_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_StdIOType *io);
@@ -50,6 +83,43 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 #endif
 #if PL_HAS_MOTOR
   MOT_ParseCommand,
+#endif
+#if PL_HAS_MCP4728
+  MCP4728_ParseCommand,
+#endif
+#if PL_HAS_QUAD_CALIBRATION
+  QUADCALIB_ParseCommand,
+#endif
+#if PL_HAS_QUADRATURE
+#if Q4CLeft_PARSE_COMMAND_ENABLED
+  Q4CLeft_ParseCommand,
+#endif
+#if Q4CRight_PARSE_COMMAND_ENABLED
+  Q4CRight_ParseCommand,
+#endif
+#endif
+#if PL_HAS_MOTOR_TACHO
+  TACHO_ParseCommand,
+#endif
+#if PL_HAS_PID
+  PID_ParseCommand,
+#endif
+#if PL_HAS_DRIVE
+  DRV_ParseCommand,
+#endif
+#if PL_HAS_ULTRASONIC
+  US_ParseCommand,
+#endif
+#if PL_HAS_ACCEL
+#if MMA1_PARSE_COMMAND_ENABLED
+  MMA1_ParseCommand,
+#endif
+#endif
+#if PL_HAS_RADIO
+#if RNET1_PARSE_COMMAND_ENABLED
+  RNET1_ParseCommand,
+#endif
+  RNETA_ParseCommand,
 #endif
   NULL /* Sentinel */
 };
@@ -188,7 +258,9 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
       unsigned char ch;
 
       while((ch=SQUEUE_ReceiveChar()) && ch!='\0') {
-        ioLocal->stdOut(ch);
+  #if CLS1_DEFAULT_SERIAL
+       ioLocal->stdOut(ch);
+  #endif
   #if PL_HAS_BLUETOOTH
         BT_stdio.stdOut(ch); /* copy on Bluetooth */
   #endif

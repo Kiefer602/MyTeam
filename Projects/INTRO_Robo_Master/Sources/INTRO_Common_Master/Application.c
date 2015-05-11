@@ -39,6 +39,12 @@ static void vTimerCallback(xTimerHandle pxTimer) {
 }
 #endif
 
+void APP_DebugPrint(unsigned char *str) {
+#if PL_HAS_SHELL
+  SHELL_SendString(str);
+#endif
+}
+
 /*!
  * \brief Application event handler
  * \param event Event to be handled

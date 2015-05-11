@@ -23,6 +23,9 @@
   #include "RTOSTRC1.h"
 #endif
 #include "timers.h"
+#if PL_HAS_LINE_SENSOR
+  #include "Reflectance.h"
+#endif
 
 #define USE_SW_TIMERS 0
 
@@ -36,6 +39,12 @@ static void vTimerCallback(xTimerHandle pxTimer) {
 }
 #endif
 
+void APP_DebugPrint(unsigned char *str) {
+#if PL_HAS_SHELL
+  SHELL_SendString(str);
+#endif
+}
+
 /*!
  * \brief Application event handler
  * \param event Event to be handled
@@ -44,7 +53,7 @@ void APP_HandleEvents(EVNT_Handle event) {
   switch(event) {
     case EVNT_STARTUP:
       LED1_On();
-      WAIT1_Waitms(50);
+      WAIT1_WaitOSms(50);
       LED1_Off();
 #if PL_HAS_BUZZER
       BUZ_Beep(300, 500);
@@ -59,9 +68,13 @@ void APP_HandleEvents(EVNT_Handle event) {
 #if PL_HAS_BUZZER
       BUZ_Beep(300, 250);
 #endif
+      RTOS_ButtonSW1Press();
       break;
     case EVNT_SW1_LPRESSED:
       CLS1_SendStr("SW1 long\r\n", CLS1_GetStdio()->stdOut);
+#if PL_HAS_LINE_SENSOR
+      REF_CalibrateStartStop();
+#endif
       break;
     case EVNT_SW1_RELEASED:
       CLS1_SendStr("SW1 release\r\n", CLS1_GetStdio()->stdOut);
@@ -139,6 +152,7 @@ void APP_HandleEvents(EVNT_Handle event) {
   }
 }
 
+#if !PL_HAS_RTOS
 /*!
  * \brief Application main 'task'.
  */
@@ -165,12 +179,11 @@ static void APP_Task(void) {
     WAIT1_Waitms(50); /* wait some time */
   }
 }
-
-
+#endif
 
 void APP_Run(void) {
 #if configUSE_TRACE_HOOKS
-  if (RTOSTRC1_uiTraceStart()==0) {
+  if (RTOSTRC1_uiTraceStart()!=1) {
     for(;;){} /* failed to start trace */
   }
 #endif
@@ -184,8 +197,11 @@ void APP_Run(void) {
   }
 #endif
   PL_Init();
+#if PL_HAS_RTOS
   RTOS_Run();
- // APP_Task(); /* does not return */
+#else
+  APP_Task(); /* does not return */
+#endif
 #if 0
   LED1_On();
   LED2_On();
