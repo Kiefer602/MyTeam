@@ -57,7 +57,7 @@
   /*!< 1: single character queue, 0: string queue with limited size */
 #define PL_HAS_SEMAPHORE      (1 && PL_HAS_RTOS)
   /*!< Set to 1 for semaphores enabled, 0 otherwise */
-#define PL_HAS_LINE_SENSOR    (1 && PL_IS_ROBO)
+#define PL_HAS_REFLECTANCE    (1 && PL_IS_ROBO)
   /*!< Set to 1 for line sensor enabled, 0 otherwise */
 #define PL_HAS_MOTOR          (1 && PL_IS_ROBO)
   /*!< Set to 1 for motors enabled, 0 otherwise */
@@ -87,6 +87,8 @@
   /*! Set to 1 for remote controller enabled, 0 otherwise */
 #define PL_APP_ACCEL_CONTROL_SENDER  (1 && PL_HAS_REMOTE && PL_IS_FRDM)
   /*! Set to 1 if we are the remote control sender, 0 otherwise */
+#define PL_HAS_WATCHDOG       (1)
+  /*! Set to 1 if we are include a WDT, 0 otherwise */
 
 /* if keys are using interrupts or are polled */
 #if PL_IS_FRDM

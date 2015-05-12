@@ -24,7 +24,7 @@
   #include "RTOSTRC1.h"
 #endif
 #include "timers.h"
-#if PL_HAS_LINE_SENSOR
+#if PL_HAS_REFLECTANCE
   #include "Reflectance.h"
 #endif
 
@@ -73,7 +73,7 @@ void APP_HandleEvents(EVNT_Handle event) {
       break;
     case EVNT_SW1_LPRESSED:
       CLS1_SendStr("SW1 long\r\n", CLS1_GetStdio()->stdOut);
-#if PL_HAS_LINE_SENSOR
+#if PL_HAS_REFLECTANCE
       REF_CalibrateStartStop();
 #endif
       break;

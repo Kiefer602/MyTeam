@@ -33,6 +33,7 @@
 #include "Accel.h"
 #include "RNet_App.h"
 #include "Remote.h"
+#include "Watchdog.h"
 
 void PL_Init(void) {
 #if PL_HAS_LED
@@ -71,7 +72,7 @@ void PL_Init(void) {
 #if PL_HAS_SEMAPHORE
   SEM_Init();
 #endif
-#if PL_HAS_LINE_SENSOR
+#if PL_HAS_REFLECTANCE
   REF_Init();
 #endif
 #if PL_HAS_MOTOR
@@ -98,9 +99,15 @@ void PL_Init(void) {
 #if PL_HAS_REMOTE
   REMOTE_Init();
 #endif
+#if PL_HAS_WATCHDOG
+  WDT_Init();
+#endif
 }
 
 void PL_Deinit(void) {
+#if PL_HAS_WATCHDOG
+  WDT_Deinit();
+#endif
 #if PL_HAS_REMOTE
   REMOTE_Deinit();
 #endif
@@ -125,7 +132,7 @@ void PL_Deinit(void) {
 #if PL_HAS_MOTOR
   MOT_Deinit();
 #endif
-#if PL_HAS_LINE_SENSOR
+#if PL_HAS_REFLECTANCE
   REF_Deinit();
 #endif
 #if PL_HAS_SEMAPHORE

@@ -21,7 +21,7 @@
 #if PL_HAS_SHELL_QUEUE
   #include "ShellQueue.h"
 #endif
-#if PL_HAS_LINE_SENSOR
+#if PL_HAS_REFLECTANCE
   #include "Reflectance.h"
 #endif
 #if PL_HAS_MOTOR
@@ -63,6 +63,9 @@
 #if PL_HAS_REMOTE
   #include "Remote.h"
 #endif
+#if PL_HAS_WATCHDOG
+  #include "Watchdog.h"
+#endif
 
 /* forward declaration */
 static uint8_t SHELL_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_StdIOType *io);
@@ -79,7 +82,7 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
   BT1_ParseCommand,
   #endif
 #endif
-#if PL_HAS_LINE_SENSOR
+#if PL_HAS_REFLECTANCE
   #if REF_PARSE_COMMAND_ENABLED
   REF_ParseCommand,
   #endif
@@ -131,6 +134,24 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 };
 
 static uint32_t SHELL_val; /* used as demo value for shell */
+
+#if PL_HAS_WATCHDOG
+static TickType_t ticksBeforeCmd;
+#endif
+
+void SHELL_OnBeforeIterateCmd(const uint8_t *cmd) {
+  (void)cmd; /* not used */
+#if PL_HAS_WATCHDOG
+  ticksBeforeCmd = FRTOS1_xTaskGetTickCount();
+#endif
+}
+
+void SHELL_OnAfterIterateCmd(const uint8_t *cmd) {
+  (void)cmd; /* not used */
+#if PL_HAS_WATCHDOG
+  WDT_IncTaskCntr(WDT_TASK_ID_SHELL, (FRTOS1_xTaskGetTickCount()-ticksBeforeCmd)/portTICK_RATE_MS); /* count for output to console */
+#endif
+}
 
 void SHELL_SendString(unsigned char *msg) {
 #if PL_HAS_SHELL_QUEUE
@@ -286,6 +307,9 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
       }
   #endif
     }
+#endif
+#if PL_HAS_WATCHDOG
+    WDT_IncTaskCntr(WDT_TASK_ID_SHELL, 10);
 #endif
     FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
   } /* for */

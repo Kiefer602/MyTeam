@@ -15,6 +15,9 @@
 #if PL_HAS_RTOS_TRACE
   #include "RTOSTRC1.h"
 #endif
+#if PL_HAS_WATCHDOG
+  #include "Watchdog.h"
+#endif
 
 static volatile bool DRV_SpeedOn = FALSE;
 static int32_t DRV_SpeedLeft, DRV_SpeedRight;
@@ -68,6 +71,9 @@ static portTASK_FUNCTION(DriveTask, pvParameters) {
       PID_Speed(TACHO_GetSpeed(FALSE), DRV_SpeedRight, FALSE); /* right */
     }
     prevOn = DRV_SpeedOn;
+#if PL_HAS_WATCHDOG
+    WDT_IncTaskCntr(WDT_TASK_ID_DRIVE, 2);
+#endif
     FRTOS1_vTaskDelay(2/portTICK_RATE_MS);
   } /* for */
 }

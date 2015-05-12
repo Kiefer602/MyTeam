@@ -16,6 +16,9 @@
 #include "Reflectance.h"
 #include "Motor.h"
 #include "Shell.h"
+#if PL_HAS_WATCHDOG
+  #include "Watchdog.h"
+#endif
 
 static volatile bool SW1Pressed = FALSE;
 
@@ -67,6 +70,9 @@ static void AppTask(void* param) {
         MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), 0);
       }
     }
+#endif
+#if PL_HAS_WATCHDOG
+    WDT_IncTaskCntr(WDT_TASK_ID_MAIN, 10);
 #endif
     FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
   }

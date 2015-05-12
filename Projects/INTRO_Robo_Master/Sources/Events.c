@@ -42,6 +42,7 @@ extern "C" {
 #if PL_HAS_ULTRASONIC
   #include "Ultrasonic.h"
 #endif
+#include "Shell.h"
 
 /*
 ** ===================================================================
@@ -378,6 +379,42 @@ void TU_US_OnChannel0(LDD_TUserData *UserDataPtr)
 #else
   (void)UserDataPtr; /* unused */
 #endif
+}
+
+/*
+** ===================================================================
+**     Event       :  CLS1_OnBeforeIterateCmd (module Events)
+**
+**     Component   :  CLS1 [Shell]
+**     Description :
+**         Hook called before parsing a command in IterateTable().
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         cmd             - command parsed
+**     Returns     : Nothing
+** ===================================================================
+*/
+void CLS1_OnBeforeIterateCmd(const uint8_t *cmd)
+{
+  SHELL_OnBeforeIterateCmd(cmd);
+}
+
+/*
+** ===================================================================
+**     Event       :  CLS1_OnAfterIterateCmd (module Events)
+**
+**     Component   :  CLS1 [Shell]
+**     Description :
+**         Hook called after parsing a command in IterateTable().
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         cmd             - command parsed
+**     Returns     : Nothing
+** ===================================================================
+*/
+void CLS1_OnAfterIterateCmd(const uint8_t *cmd)
+{
+  SHELL_OnAfterIterateCmd(cmd);
 }
 
 /* END Events */

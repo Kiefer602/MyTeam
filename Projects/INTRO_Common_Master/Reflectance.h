@@ -10,7 +10,7 @@
 #define REFLECTANCE_H_
 
 #include "Platform.h"
-#if PL_HAS_LINE_SENSOR
+#if PL_HAS_REFLECTANCE
 
 #if PL_HAS_SHELL
   #include "CLS1.h"
@@ -55,6 +55,6 @@ void REF_Deinit(void);
  */
 void REF_Init(void);
 
-#endif /* PL_HAS_LINE_SENSOR */
+#endif /* PL_HAS_REFLECTANCE */
 
 #endif /* REFLECTANCE_H_ */

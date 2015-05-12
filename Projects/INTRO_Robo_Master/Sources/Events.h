@@ -116,6 +116,7 @@
 #include "SMasterLdd1.h"
 #include "MMA1.h"
 #include "KIN1.h"
+#include "WDog1.h"
 #include "SW1.h"
 #include "ExtIntLdd1.h"
 
@@ -370,6 +371,36 @@ void TU_US_OnCounterRestart(LDD_TUserData *UserDataPtr);
 */
 /* ===================================================================*/
 void TU_US_OnChannel0(LDD_TUserData *UserDataPtr);
+
+void CLS1_OnBeforeIterateCmd(const uint8_t *cmd);
+/*
+** ===================================================================
+**     Event       :  CLS1_OnBeforeIterateCmd (module Events)
+**
+**     Component   :  CLS1 [Shell]
+**     Description :
+**         Hook called before parsing a command in IterateTable().
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         cmd             - command parsed
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void CLS1_OnAfterIterateCmd(const uint8_t *cmd);
+/*
+** ===================================================================
+**     Event       :  CLS1_OnAfterIterateCmd (module Events)
+**
+**     Component   :  CLS1 [Shell]
+**     Description :
+**         Hook called after parsing a command in IterateTable().
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         cmd             - command parsed
+**     Returns     : Nothing
+** ===================================================================
+*/
 
 /* END Events */
 

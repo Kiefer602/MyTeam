@@ -7,7 +7,7 @@
  */
 
 #include "Platform.h"
-#if PL_HAS_LINE_SENSOR
+#if PL_HAS_REFLECTANCE
 #include "Reflectance.h"
 #include "LED_IR.h"
 #include "WAIT1.h"
@@ -28,6 +28,9 @@
 #endif
 #if PL_HAS_CONFIG_NVM
   #include "NVM_Config.h"
+#endif
+#if PL_HAS_WATCHDOG
+  #include "Watchdog.h"
 #endif
 
 #define REF_NOF_SENSORS 6 /* number of sensors */
@@ -487,6 +490,9 @@ static portTASK_FUNCTION(ReflTask, pvParameters) {
   (void)pvParameters; /* not used */
   for(;;) {
     REF_StateMachine();
+#if PL_HAS_WATCHDOG
+    WDT_IncTaskCntr(WDT_TASK_ID_REFLECTANCE, 10+1); /* count in measurement time */
+#endif
     FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
   }
 }
@@ -510,4 +516,4 @@ void REF_Init(void) {
     for(;;){} /* error */
   }
 }
-#endif /* PL_HAS_LINE_SENSOR */
+#endif /* PL_HAS_REFLECTANCE */

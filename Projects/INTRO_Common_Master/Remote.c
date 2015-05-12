@@ -35,6 +35,9 @@
 #if PL_HAS_JOYSTICK
   #include "AD1.h"
 #endif
+#if PL_HAS_WATCHDOG
+  #include "Watchdog.h"
+#endif
 
 static bool REMOTE_isOn = FALSE;
 static bool REMOTE_isVerbose = FALSE;
@@ -96,11 +99,22 @@ static uint8_t APP_GetXY(uint16_t *x, uint16_t *y, int8_t *x8, int8_t *y8) {
 }
 
 static portTASK_FUNCTION(RemoteTask, pvParameters) {
+#if PL_HAS_WATCHDOG
+  int i;
+#endif
+
   (void)pvParameters;
 #if PL_HAS_JOYSTICK
   (void)APP_GetXY(&midPointX, &midPointY, NULL, NULL);
 #endif
+#if PL_HAS_WATCHDOG
+  for(i=0;i<10;i++) { /* do it in smaller steps */
+    WDT_IncTaskCntr(WDT_TASK_ID_REMOTE, 100);
+    FRTOS1_vTaskDelay(100/portTICK_RATE_MS);
+  }
+#else
   FRTOS1_vTaskDelay(1000/portTICK_RATE_MS);
+#endif
   for(;;) {
     if (REMOTE_isOn) {
 #if PL_HAS_ACCEL
@@ -168,9 +182,23 @@ static portTASK_FUNCTION(RemoteTask, pvParameters) {
         LED1_Neg();
       }
 #endif
+#if PL_HAS_WATCHDOG
+      for(i=0;i<2;i++) { /* do it in smaller steps */
+        WDT_IncTaskCntr(WDT_TASK_ID_REMOTE, 100);
+        FRTOS1_vTaskDelay(100/portTICK_RATE_MS);
+      }
+#else
       FRTOS1_vTaskDelay(200/portTICK_RATE_MS);
+#endif
     } else {
+#if PL_HAS_WATCHDOG
+      for(i=0;i<10;i++) { /* do it in smaller steps */
+        WDT_IncTaskCntr(WDT_TASK_ID_REMOTE, 100);
+        FRTOS1_vTaskDelay(100/portTICK_RATE_MS);
+      }
+#else
       FRTOS1_vTaskDelay(1000/portTICK_RATE_MS);
+#endif
     }
   } /* for */
 }
@@ -457,7 +485,7 @@ void REMOTE_Init(void) {
   REMOTE_useAccelerometer = FALSE;
 #endif
 #if PL_APP_ACCEL_CONTROL_SENDER
-  if (FRTOS1_xTaskCreate(RemoteTask, "Remote", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL) != pdPASS) {
+  if (FRTOS1_xTaskCreate(RemoteTask, "Remote", configMINIMAL_STACK_SIZE+50, NULL, tskIDLE_PRIORITY, NULL) != pdPASS) {
     for(;;){} /* error */
   }
 #endif
