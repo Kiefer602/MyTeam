@@ -300,9 +300,11 @@ void FRTOS1_vApplicationMallocFailedHook(void)
 */
 void RTOSTRC1_OnTraceWrap(void)
 {
+#if PL_HAS_RTOS_TRACE
   uint8_t buf[64];
 
   RTOSTRC1_vGetGDBDumpCommand(buf, sizeof(buf), "c:\\tmp\\trc.dump");
+#endif
 }
 
 /*

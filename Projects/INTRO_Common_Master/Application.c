@@ -19,6 +19,7 @@
 #include "KeyDebounce.h"
 #include "RTOS.h"
 #include "FRTOS1.h"
+#include "Shell.h"
 #if configUSE_TRACE_HOOKS
   #include "RTOSTRC1.h"
 #endif

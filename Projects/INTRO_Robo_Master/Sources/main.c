@@ -111,6 +111,7 @@
 #include "SM2_nRF.h"
 #include "SMasterLdd1.h"
 #include "MMA1.h"
+#include "KIN1.h"
 #include "SW1.h"
 #include "ExtIntLdd1.h"
 /* Including shared modules, which are used for whole project */

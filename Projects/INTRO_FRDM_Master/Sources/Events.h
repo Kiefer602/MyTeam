@@ -60,6 +60,8 @@
 #include "BitIoLdd9.h"
 #include "SW7.h"
 #include "ExtIntLdd5.h"
+#include "AD1.h"
+#include "AdcLdd1.h"
 #include "FRTOS1.h"
 #include "RTOSCNTRLDD1.h"
 #include "USB1.h"
